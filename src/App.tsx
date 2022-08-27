@@ -11,8 +11,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/" element={<EmployeeInfo />} />
-        <Route path="/component/PhotoUpload" element={<PhotoUpload />} />
+        <Route path="/employee-form" element={<EmployeeInfo />} />
+        <Route path="/component/PhotoUpload" element={<PhotoUpload onUpload={() => {}} />} />
       </Routes>
     </BrowserRouter>
   );

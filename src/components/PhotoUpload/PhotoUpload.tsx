@@ -1,35 +1,46 @@
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import { PhotoUploadProps } from "./PhotoUpload.types";
+import { FileUploader } from "react-drag-drop-files";
 
 import { useUploadHandler } from "./hooks/useUploadHandler";
 
 import {
   SPhotoUpload,
-  SPhotoUploadInput,
   SPhotoUploadText,
   SPhotoUploadedPhoto,
   SPhotoUploadButton,
 } from "./SPhotoUpload.styled";
 
-export const PhotoUpload: FC<PhotoUploadProps> = () => {
+export const PhotoUpload: FC<PhotoUploadProps> = ({onUpload}) => {
   const { blobSource, fileUploadHandler, uploadedPhoto } = useUploadHandler();
 
-  console.log(blobSource, uploadedPhoto);
+  const onUploadCallback = (file: File) => {
+    fileUploadHandler(file)
+    onUpload(file)
+  } 
 
   if (blobSource && uploadedPhoto) {
     return (
       <SPhotoUpload>
-        <SPhotoUploadInput onChange={(e) => fileUploadHandler(e)} />
         <SPhotoUploadedPhoto src={blobSource} />
+        <FileUploader
+          types={["JPG", "PNG"]}
+          onDrop={(file: File) => onUploadCallback(file)}
+          handleChange={(file: File) => onUploadCallback(file)}
+        />
       </SPhotoUpload>
     );
   }
 
   return (
-    <SPhotoUpload>
+    <SPhotoUpload role="combobox">
+      <FileUploader
+        types={["JPG", "PNG"]}
+        onDrop={(file: File) => onUploadCallback(file)}
+        handleChange={(file: File) => onUploadCallback(file)}
+      />
       <SPhotoUploadText>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</SPhotoUploadText>
       <SPhotoUploadButton>
-        <SPhotoUploadInput onChange={(e) => fileUploadHandler(e)}/>
         ატვირთე
       </SPhotoUploadButton>
     </SPhotoUpload>

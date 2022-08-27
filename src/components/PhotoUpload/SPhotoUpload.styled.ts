@@ -11,17 +11,20 @@ export const SPhotoUpload = styled.div`
   justify-content: center;
   overflow: hidden;
   gap: 50px;
+  overflow: hidden;
   flex-direction: column;
-`;
-
-export const SPhotoUploadInput = styled.input`
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  opacity: 0;
-  width: 100%;
-  cursor: pointer;
-  height: 423px;
+  label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    padding: 0 100%;
+    z-index: 9;
+    display: block;
+    cursor: pointer;
+    border: 1px solid red;
+    height: 423px;
+  }
 `;
 
 export const SPhotoUploadText = styled.span`
@@ -36,6 +39,7 @@ export const SPhotoUploadText = styled.span`
 export const SPhotoUploadButton = styled.button`
   background: #62a1eb;
   color: #fff;
+  overflow: hidden;
   border: none;
   width: 233px;
   position: relative;
@@ -50,7 +54,3 @@ export const SPhotoUploadButton = styled.button`
 export const SPhotoUploadedPhoto = styled.img`
   width: 100%;
 `
-
-SPhotoUploadInput.defaultProps = {
-  type: "file",
-};

@@ -36,7 +36,6 @@ export const SHomeButton = styled(Link)`
   width: 100%;
   padding: 1.1rem 3.5rem;
   text-align: center;
-  font-weight: bold;
   background: #62a1eb;
   color: #ffffff;
   font-size: 1.2rem;

@@ -18,7 +18,7 @@ export const Home = () => {
       <SHomeSection>
         <SHomeSectionImg src={"assets/img/Group1.png"} />
         <SHomeSectionButtonsWrapper>
-          <SHomeButton to="/">ჩანაწერის დამატება</SHomeButton>
+          <SHomeButton to="/employee-form">ჩანაწერის დამატება</SHomeButton>
           <SHomeButton to="/">ჩანაწერის სია</SHomeButton>
         </SHomeSectionButtonsWrapper>
       </SHomeSection>
