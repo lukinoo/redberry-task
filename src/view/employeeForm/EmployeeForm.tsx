@@ -68,7 +68,7 @@ export const EmployeeForm = () => {
               id="phone"
               required
             />
-            <p>უნდა მთავრდებოდეს @redberry.ge-ით</p>
+            <p>უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</p>
           </SEmployeeFormEmailWrapper>
           <SEmployeeFormSubmitButton type="submit">
             შემდეგი

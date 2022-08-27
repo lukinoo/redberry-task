@@ -70,6 +70,7 @@ export const SEmployeeFormSelect = styled.select`
   border: none;
   padding: 1rem;
   font-size: 1.1rem;
+  border-radius: 8px;
   font-family: inherit;
   font-weight: 500;
 `;
@@ -104,4 +105,9 @@ export const SEmployeeFormSubmitButton = styled.button`
   font-family: inherit;
   font-weight: 500;
   border-radius: 8px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    background: #317ad0;
+  }
 `;

@@ -37,6 +37,20 @@ const buttonStyles = css`
   font-weight: 700;
   margin-bottom: 1.1rem;
   cursor: pointer;
+  position: relative;
+  &.active-form {
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -50%;
+      transform: translate(-50%, 50%);
+      width: 80%;
+      border: 2px solid #000000;
+      background: #000000;
+      border-radius: 18px;
+    }
+  }
 `;
 
 export const SEmployeeHeaderButtonEmloyee = styled.button`

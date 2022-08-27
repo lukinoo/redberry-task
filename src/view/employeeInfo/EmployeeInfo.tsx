@@ -20,11 +20,13 @@ export const EmployeeInfo = () => {
         </SEmployeeHeaderBackBtn>
         <SEmployeeHeaderButtonEmloyee
           onClick={() => setFormRoute("employee-route")}
+          className={formRoute == "employee-route" ? "active-form" : ""}
         >
           თანამშრომლის ინფო
         </SEmployeeHeaderButtonEmloyee>
         <SEmployeeHeaderButtonLeptop
           onClick={() => setFormRoute("leptop-route")}
+          className={formRoute == "leptop-route" ? "active-form" : ""}
         >
           ლეპტოპის მახასიათებლები
         </SEmployeeHeaderButtonLeptop>
