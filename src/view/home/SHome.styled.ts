@@ -7,17 +7,18 @@ export const SHome = styled.div`
 `;
 
 export const SHomeHeader = styled.header`
-  min-height: 17vh;
+  min-height: 16vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const SHomeSection = styled.section`
-  min-height: 83vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
 `;
 
 export const SHomeSectionImg = styled.img``;
@@ -41,6 +42,10 @@ export const SHomeButton = styled(Link)`
   font-size: 1.2rem;
   border-radius: 8px;
   letter-spacing: 2px;
+  transition: background 0.2s ease;
+  &:hover {
+    background: #317ad0;
+  }
 `;
 
 export const SHomeLogo = styled.img``;

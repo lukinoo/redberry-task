@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 export const SEmployee = styled.section`
   min-height: 100vh;
-  background: #ffffff;
+  background: #f6f6f6;
 `;
 
 export const SEmployeeHeader = styled.header`
@@ -35,7 +35,7 @@ const buttonStyles = css`
   font-family: inherit;
   font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
   cursor: pointer;
 `;
 
