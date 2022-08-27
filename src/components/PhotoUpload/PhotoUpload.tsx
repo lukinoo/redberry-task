@@ -22,7 +22,7 @@ export const PhotoUpload: FC<PhotoUploadProps> = ({onUpload}) => {
   if (blobSource && uploadedPhoto) {
     return (
       <SPhotoUpload>
-        <SPhotoUploadedPhoto src={blobSource} />
+        <SPhotoUploadedPhoto src={blobSource} role="img"/>
         <FileUploader
           types={["JPG", "PNG"]}
           onDrop={(file: File) => onUploadCallback(file)}
@@ -35,6 +35,7 @@ export const PhotoUpload: FC<PhotoUploadProps> = ({onUpload}) => {
   return (
     <SPhotoUpload role="combobox">
       <FileUploader
+        role="upload"
         types={["JPG", "PNG"]}
         onDrop={(file: File) => onUploadCallback(file)}
         handleChange={(file: File) => onUploadCallback(file)}

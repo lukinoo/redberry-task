@@ -31,6 +31,7 @@ export const SEmployeeHeaderBackBtn = styled(Link)`
 const buttonStyles = css`
   border: none;
   background: none;
+  outline: none;
   font-family: inherit;
   font-size: 1.2rem;
   font-weight: 700;
