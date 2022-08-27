@@ -1,0 +1,1 @@
+export { LeptopInfo } from "./LeptopInfo";

@@ -1,11 +1,16 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { Home } from "./view/home";
+import { EmployeeInfo } from "./view/employeeInfo";
 
 const App = () => {
   return (
-    <div className="App">
-      <h1>hello, world</h1>
-      <Home />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/" element={<EmployeeInfo />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
