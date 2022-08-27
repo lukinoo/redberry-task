@@ -2,15 +2,13 @@ import styled from "styled-components";
 
 export const SEmployeeFormWrapper = styled.div`
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 `;
 
 export const SEmployeeForm = styled.form`
   max-width: 1200px;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
+  margin: 0 auto;
   margin-top: 1.2rem;
   background: #ffffff;
   border-radius: 18px;
@@ -111,3 +109,16 @@ export const SEmployeeFormSubmitButton = styled.button`
     background: #317ad0;
   }
 `;
+
+export const SEmployeeFormFooter = styled.footer`
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SEmployeeFormFooterLogo = styled.img``;
+
+SEmployeeFormFooterLogo.defaultProps = {
+  src: "assets/svg/LOGO2.svg",
+};

@@ -9,6 +9,8 @@ import {
   SEmployeeFormSelect,
   SEmployeeFormEmailWrapper,
   SEmployeeFormSubmitButton,
+  SEmployeeFormFooter,
+  SEmployeeFormFooterLogo,
 } from "./EmployeeFrom.styled";
 
 export const EmployeeForm = () => {
@@ -75,6 +77,10 @@ export const EmployeeForm = () => {
           </SEmployeeFormSubmitButton>
         </SEmployeeFormContainer>
       </SEmployeeForm>
+      {/* goes here */}
+      <SEmployeeFormFooter>
+        <SEmployeeFormFooterLogo />
+      </SEmployeeFormFooter>
     </SEmployeeFormWrapper>
   );
 };
