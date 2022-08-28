@@ -1,7 +1,7 @@
-import React from 'react'
+import { useFetchList } from "./hooks/useFetchList";
 
 export const RecordLists = () => {
-  return (
-    <div>RecordList</div>
-  )
-}
+  // const [data] = useFetchList()
+
+  return <div>RecordList</div>;
+};

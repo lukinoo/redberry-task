@@ -32,20 +32,20 @@ export const LeptopForm = () => {
             />
             <p>ლათინური ასოები, ციფრები, !@#$%^&*()_+=</p>
           </SLeptopFormInputWrapper>
-          <SLeptopFormSelect>
+          <SLeptopFormSelect name="laptop_brand_id">
             <option>ლეპტოპის ბრენდი</option>
           </SLeptopFormSelect>
           <SLeptopFormInfoWrapper>
-            <SLeptopFormRAM>
+            <SLeptopFormRAM name="laptop_cpu">
               <option>16</option>
             </SLeptopFormRAM>
             <SLeptopFormInputWrapper>
               <label htmlFor="leptop-name">CPU-ს ბირთვი</label>
               <SInput
                 type="number"
-                name="leptopname"
+                name="laptop_cpu_cores"
                 id="leptop-name"
-                placeholder="HP"
+                placeholder="14"
               />
               <p>მხოლოდ ციფრები</p>
             </SLeptopFormInputWrapper>
@@ -53,9 +53,9 @@ export const LeptopForm = () => {
               <label htmlFor="leptop-name">CPU-ს ნაკადი</label>
               <SInput
                 type="number"
-                name="leptopname"
+                name="laptop_cpu_threads"
                 id="leptop-name"
-                placeholder="HP"
+                placeholder="365"
               />
               <p>მხოლოდ ციფრები</p>
             </SLeptopFormInputWrapper>
@@ -64,7 +64,7 @@ export const LeptopForm = () => {
             <label htmlFor="leptop-name">ლეპტოპის RAM (GB)</label>
             <SInput
               type="number"
-              name="leptopname"
+              name="laptop_ram"
               id="leptop-name"
               placeholder="HP"
             />
@@ -74,11 +74,19 @@ export const LeptopForm = () => {
             <label style={{ margin: "0 0 1rem 0" }}>მეხსიერების ტიპი</label>
             <SLeptopFormRadioInputWrapper>
               <div>
-                <input type="radio" name="leptopname" id="leptop-name" />
+                <input
+                  type="radio"
+                  name="laptop_hard_drive_type"
+                  id="leptop-name"
+                />
                 <label htmlFor="leptop-name">SSD</label>
               </div>
               <div>
-                <input type="radio" name="leptopname" id="leptop-name" />
+                <input
+                  type="radio"
+                  name="laptop_hard_drive_type"
+                  id="leptop-name"
+                />
                 <label htmlFor="leptop-name">HDD</label>
               </div>
             </SLeptopFormRadioInputWrapper>
@@ -86,13 +94,17 @@ export const LeptopForm = () => {
           <SLeptopFormDateInputWrapper>
             <div>
               <label htmlFor="leptop-name">შეძენის რიცხვი (არჩევითი)</label>
-              <SInput type="date" name="leptopname" id="leptop-name" />
+              <SInput
+                type="date"
+                name="laptop_purchase_date"
+                id="leptop-name"
+              />
             </div>
             <div>
               <label htmlFor="leptop-name">ლეპტოპის ფასი</label>
               <SInput
                 type="text"
-                name="leptopname"
+                name="laptop_price"
                 id="leptop-name"
                 placeholder="0000"
               />
@@ -103,11 +115,11 @@ export const LeptopForm = () => {
             <label style={{ margin: "0 0 2rem 0" }}>ლეპტოპის მდგომარეობა</label>
             <SLeptopFormRadioInputWrapper>
               <div>
-                <input type="radio" name="leptopname" id="leptop-name" />
+                <input type="radio" name="laptop_stats" id="leptop-name" />
                 <label htmlFor="leptop-name">ახალი</label>
               </div>
               <div>
-                <input type="radio" name="leptopname" id="leptop-name" />
+                <input type="radio" name="laptop_stats" id="leptop-name" />
                 <label htmlFor="leptop-name">მეორადი</label>
               </div>
             </SLeptopFormRadioInputWrapper>

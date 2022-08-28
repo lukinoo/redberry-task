@@ -8,9 +8,9 @@ import {
   SRecordCardLaptopName,
   SRecordCardLink
 } from "./SRecordCard.styled";
-import { RecordCardProps } from "./RecordCard.types";
+import { RecordListTypes } from "../../types/RecordList.types";
 
-export const RecordCard: FC<RecordCardProps> = ({ laptop, user }) => {
+export const RecordCard: FC<RecordListTypes> = ({ laptop, user }) => {
   return (
     <SRecordCard>
       <SRecordCardImageContainer>

@@ -1,4 +1,4 @@
-export interface RecordCardProps {
+export interface RecordListTypes {
   laptop: {
     image: string
     name: string

@@ -1,5 +1,9 @@
-import { SCompleteContainer } from "./Complete.style";
+import { SCompleteContainer, SCompletePopUp } from "./Complete.style";
 
 export const Complete = () => {
-  return <SCompleteContainer>complete</SCompleteContainer>;
+  return (
+    <SCompleteContainer>
+      <SCompletePopUp>complete</SCompletePopUp>
+    </SCompleteContainer>
+  );
 };
