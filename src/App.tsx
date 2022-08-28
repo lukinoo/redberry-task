@@ -12,7 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/employee-form" element={<EmployeeInfo />} />
-        <Route path="/component/PhotoUpload" element={<PhotoUpload onUpload={() => {}} />} />
+        <Route path="/component/PhotoUpload" element={<PhotoUpload onUpload={() => {}}  isError={true}/>} />
       </Routes>
     </BrowserRouter>
   );

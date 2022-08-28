@@ -9,20 +9,21 @@ import {
   SPhotoUploadText,
   SPhotoUploadedPhoto,
   SPhotoUploadButton,
+  SPhotoUploadWarn
 } from "./SPhotoUpload.styled";
 
-export const PhotoUpload: FC<PhotoUploadProps> = ({onUpload}) => {
+export const PhotoUpload: FC<PhotoUploadProps> = ({ onUpload, isError }) => {
   const { blobSource, fileUploadHandler, uploadedPhoto } = useUploadHandler();
 
   const onUploadCallback = (file: File) => {
-    fileUploadHandler(file)
-    onUpload(file)
-  } 
+    fileUploadHandler(file);
+    onUpload(file);
+  };
 
   if (blobSource && uploadedPhoto) {
     return (
-      <SPhotoUpload>
-        <SPhotoUploadedPhoto src={blobSource} role="img"/>
+      <SPhotoUpload isError={isError}>
+        <SPhotoUploadedPhoto src={blobSource} role="img" />
         <FileUploader
           types={["JPG", "PNG"]}
           onDrop={(file: File) => onUploadCallback(file)}
@@ -33,17 +34,18 @@ export const PhotoUpload: FC<PhotoUploadProps> = ({onUpload}) => {
   }
 
   return (
-    <SPhotoUpload role="combobox">
+    <SPhotoUpload role="combobox" isError={isError}>
       <FileUploader
         role="upload"
         types={["JPG", "PNG"]}
         onDrop={(file: File) => onUploadCallback(file)}
         handleChange={(file: File) => onUploadCallback(file)}
       />
-      <SPhotoUploadText>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</SPhotoUploadText>
-      <SPhotoUploadButton>
-        ატვირთე
-      </SPhotoUploadButton>
+      <SPhotoUploadText isError={isError}>
+        { isError && <SPhotoUploadWarn /> }
+        ჩააგდე ან ატვირთე ლეპტოპის ფოტო
+      </SPhotoUploadText>
+      <SPhotoUploadButton>ატვირთე</SPhotoUploadButton>
     </SPhotoUpload>
   );
 };

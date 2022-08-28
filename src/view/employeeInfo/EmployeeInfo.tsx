@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EmployeeForm } from "../employeeForm";
+import { LeptopForm } from "../leptopForm";
 import {
   SEmployee,
   SEmployeeHeader,
@@ -32,7 +33,7 @@ export const EmployeeInfo = () => {
         </SEmployeeHeaderButtonLeptop>
       </SEmployeeHeader>
       {formRoute === "employee-route" && <EmployeeForm />}
-      {formRoute === "leptop-route" && <h1>hello, {formRoute}</h1>}
+      {formRoute === "leptop-route" && <LeptopForm />}
     </SEmployee>
   );
 };

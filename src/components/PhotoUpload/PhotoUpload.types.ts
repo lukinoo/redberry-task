@@ -1,3 +1,4 @@
 export interface PhotoUploadProps {
-  onUpload: (file: File) => void
+  onUpload: (file: File) => void,
+  isError?: boolean
 }

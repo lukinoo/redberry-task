@@ -1,1 +1,0 @@
-export { LeptopInfo } from "./LeptopInfo";
