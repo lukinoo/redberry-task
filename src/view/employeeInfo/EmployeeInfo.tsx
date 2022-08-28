@@ -10,8 +10,19 @@ import {
   SEmployeeHeaderButtonLeptop,
 } from "./EmployeeInfo.styled";
 
+import {SendRequestType} from "../../types/Form.types"
+import {initalGlobalForm} from "./EmployeeInfo.init"
+
+enum EmployeeInfoRouteEnum {
+  EMPLOYEE_ROUTE="EMPLOYEE_ROUTE",
+  LAPTOP_ROUTE="LAPTOP_ROUTE"
+}
+
 export const EmployeeInfo = () => {
-  const [formRoute, setFormRoute] = useState("employee-route");
+  const [formRoute, setFormRoute] = useState<EmployeeInfoRouteEnum>(EmployeeInfoRouteEnum.EMPLOYEE_ROUTE);
+  const [globalForm, setGlobalForm] = useState<SendRequestType>(initalGlobalForm)
+
+  
 
   return (
     <SEmployee>
@@ -20,20 +31,30 @@ export const EmployeeInfo = () => {
           <SEmployeeBackArrow />
         </SEmployeeHeaderBackBtn>
         <SEmployeeHeaderButtonEmloyee
-          onClick={() => setFormRoute("employee-route")}
-          className={formRoute === "employee-route" ? "active-form" : ""}
+          onClick={() => setFormRoute(EmployeeInfoRouteEnum.EMPLOYEE_ROUTE)}
+          className={formRoute === EmployeeInfoRouteEnum.EMPLOYEE_ROUTE ? "active-form" : ""}
         >
           თანამშრომლის ინფო
         </SEmployeeHeaderButtonEmloyee>
         <SEmployeeHeaderButtonLeptop
-          onClick={() => setFormRoute("leptop-route")}
-          className={formRoute === "leptop-route" ? "active-form" : ""}
+          onClick={() => setFormRoute(EmployeeInfoRouteEnum.LAPTOP_ROUTE)}
+          className={formRoute === EmployeeInfoRouteEnum.LAPTOP_ROUTE ? "active-form" : ""}
         >
           ლეპტოპის მახასიათებლები
         </SEmployeeHeaderButtonLeptop>
       </SEmployeeHeader>
-      {formRoute === "employee-route" && <EmployeeForm />}
-      {formRoute === "leptop-route" && <LeptopForm />}
+      {formRoute === EmployeeInfoRouteEnum.EMPLOYEE_ROUTE 
+      && <EmployeeForm 
+      handleChangeRoute={() => setFormRoute(EmployeeInfoRouteEnum.LAPTOP_ROUTE)} 
+      insertEmployeeInfo={(employeeInfo) => {
+        setGlobalForm(prev => {
+          return {
+            ...prev,
+            ...employeeInfo
+          }
+        })
+      }}/>}
+      {formRoute === EmployeeInfoRouteEnum.LAPTOP_ROUTE && <LeptopForm />}
     </SEmployee>
   );
 };

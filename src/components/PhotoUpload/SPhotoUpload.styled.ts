@@ -1,26 +1,26 @@
 import styled from "styled-components";
- 
+
 interface PhotoUploadStyleProp {
-  isError?: boolean
+  isError?: boolean;
 }
 
 export const SPhotoUpload = styled.div<PhotoUploadStyleProp>`
   width: 100%;
   height: 423px;
-  border: ${props => {
-    if(props.isError){
-      return `2px dashed #E52F2F`
+  grid-column: 1/3;
+  border: ${(props) => {
+    if (props.isError) {
+      return `2px dashed #E52F2F`;
     }
 
-    return `2px dashed #4386A9`
-
+    return `2px dashed #4386A9`;
   }};
-  background: ${props => {
-    if(props.isError){
-      return `#E52F2F29`
+  background: ${(props) => {
+    if (props.isError) {
+      return `#E52F2F29`;
     }
 
-    return `transparent`
+    return `transparent`;
   }};
   border-radius: 18px;
   position: relative;
@@ -53,12 +53,12 @@ export const SPhotoUploadText = styled.span<PhotoUploadStyleProp>`
   justify-content: center;
   flex-direction: column;
   line-height: 38px;
-  color: ${props => {
-    if(props.isError){
-      return `#E52F2F`
+  color: ${(props) => {
+    if (props.isError) {
+      return `#E52F2F`;
     }
 
-    return `#4386a9`
+    return `#4386a9`;
   }};
   font-weight: 500;
   font-size: 20px;
@@ -81,14 +81,13 @@ export const SPhotoUploadButton = styled.button`
 
 export const SPhotoUploadWarn = styled.img`
   width: 30px;
-`
+`;
 
 export const SPhotoUploadedPhoto = styled.img`
   width: 100%;
 `;
 
-
 SPhotoUploadWarn.defaultProps = {
-  src: '/assets/svg/warn.svg',
-  alt: ""
-}
+  src: "/assets/svg/warn.svg",
+  alt: "",
+};

@@ -1,36 +1,43 @@
-import { useMemo } from "react";
+import { useMemo, FormEvent, useState, FC } from "react";
+
+import {SInput} from "../../components/SInput"
+import {SSelect} from "../../components/SSelect"
+
+import { FormTypes } from "../../types/Form.types";
+import { useValidation } from "../../hooks/useValidation/useValidation";
+
 import { useFetch } from "./hooks/useFetch";
 import {
   SEmployeeForm,
   SEmployeeFormWrapper,
   SEmployeeFormContainer,
   SEmployeeFormInputWrapper,
-  SEmployeeFormInput,
   SEmployeeFormSelectWrapper,
-  SEmployeeFormSelect,
   SEmployeeFormEmailWrapper,
   SEmployeeFormSubmitButton,
   SEmployeeFormFooter,
   SEmployeeFormFooterLogo,
+  SEmployeeFormWarn
 } from "./EmployeeFrom.styled";
 import { useForm } from "../../hooks/useForm";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { useNavigate } from "react-router-dom";
 
-export const EmployeeForm = () => {
+import {EmployeeFormProps} from "./EmployeeForm.types"
+
+export const EmployeeForm: FC<EmployeeFormProps> = ({handleChangeRoute, insertEmployeeInfo}) => {
   // api fetch
   const [teams] = useFetch("https://pcfy.redberryinternship.ge/api/teams");
+  const [isError, setIsError] = useState<string | undefined>(undefined)
   const [positions] = useFetch(
     "https://pcfy.redberryinternship.ge/api/positions"
   );
 
   // default form values | localstorage values
-  const getLocalEmployee = useLocalStorage();
-
-  const navigate = useNavigate();
+  const [getLocalEmployee] = useLocalStorage();
 
   // input handler
   const [values, handleChange] = useForm(getLocalEmployee);
+  const [validation] = useValidation<FormTypes>(values)
 
   const currentPostions = useMemo(() => {
     const findIdInTeams = teams.find((e) => e.name === values.team) || {id: ""}
@@ -40,15 +47,46 @@ export const EmployeeForm = () => {
     return filterPostions;
   }, [values.team, positions, teams]);
 
+  const submitHandler = (e: FormEvent) => {
+    e.preventDefault()
+
+    let validationError;
+
+    if(validation.error){
+      validationError = String(validation.error).split(" ")[1].replace(/"/g, "")
+    }else {
+      validationError = undefined
+    }
+    
+    if(validationError === undefined){
+      handleChangeRoute()
+      const findId = teams.find((e) => e.name === values.team)
+      const findPostions = positions.find((postion) => postion.team_id === findId!.id);
+
+      const insertObject = {
+        name: values.name,
+        lastname: values.lastname,
+        email: values.email,
+        team_id: findId!.id,
+        position_id: findPostions!.id
+      }
+
+      insertEmployeeInfo(insertObject)
+    }
+    else setIsError(validationError)
+
+  }
+
   
   return (
     <SEmployeeFormWrapper>
-      <SEmployeeForm>
+      <SEmployeeForm onSubmit={submitHandler}>
         <SEmployeeFormContainer>
           <SEmployeeFormInputWrapper>
             <label htmlFor="name">სახელი</label>
-            <SEmployeeFormInput
+            <SInput
               name="name"
+              isError={isError === "name" || false}
               placeholder="სახელი"
               type="text"
               value={values.name}
@@ -56,11 +94,12 @@ export const EmployeeForm = () => {
               id="name"
               required
             />
-            <p>მინიმუმ 2 სიმბოლო, ქართული ასოები</p>
+            <SEmployeeFormWarn isError={isError === "name" || false}>მინიმუმ 2 სიმბოლო, ქართული ასოები</SEmployeeFormWarn>
           </SEmployeeFormInputWrapper>
           <SEmployeeFormInputWrapper>
             <label htmlFor="lastname">გვარი</label>
-            <SEmployeeFormInput
+            <SInput
+              isError={isError === "lastname" || false}
               name="lastname"
               placeholder="გვარი"
               type="text"
@@ -69,10 +108,11 @@ export const EmployeeForm = () => {
               id="lastname"
               required
             />
-            <p>მინიმუმ 2 სიმბოლო, ქართული ასოები</p>
+            <SEmployeeFormWarn isError={isError === "lastname" || false}>მინიმუმ 2 სიმბოლო, ქართული ასოები</SEmployeeFormWarn>
           </SEmployeeFormInputWrapper>
           <SEmployeeFormSelectWrapper>
-            <SEmployeeFormSelect
+            <SSelect
+              isError={isError === "team" || false}
               onChange={handleChange}
               value={values.team}
               name="team"
@@ -87,10 +127,11 @@ export const EmployeeForm = () => {
                   </option>
                 );
               })}
-            </SEmployeeFormSelect>
+            </SSelect>
           </SEmployeeFormSelectWrapper>
           <SEmployeeFormSelectWrapper>
-            <SEmployeeFormSelect
+            <SSelect
+              isError={isError === "postion" || false}
               name="position"
               value={values.position}
               onChange={handleChange}
@@ -105,11 +146,12 @@ export const EmployeeForm = () => {
                   </option>
                 );
               })}
-            </SEmployeeFormSelect>
+            </SSelect>
           </SEmployeeFormSelectWrapper>
           <SEmployeeFormEmailWrapper>
             <label htmlFor="email">მეილი</label>
-            <SEmployeeFormInput
+            <SInput
+              isError={isError === "email" || false}
               name="email"
               placeholder="john@redberry.ge"
               type="email"
@@ -118,23 +160,24 @@ export const EmployeeForm = () => {
               id="email"
               required
             />
-            <p>უნდა მთავრდებოდეს @redberry.ge-ით</p>
+            <SEmployeeFormWarn isError={isError === "email" || false}>უნდა მთავრდებოდეს @redberry.ge-ით</SEmployeeFormWarn>
           </SEmployeeFormEmailWrapper>
           <SEmployeeFormEmailWrapper>
-            <label htmlFor="phone">ტელეფონის ნომერი</label>
-            <SEmployeeFormInput
-              name="phone"
+            <label htmlFor="phone_number">ტელეფონის ნომერი</label>
+            <SInput
+              name="phone_number"
               placeholder="+995 598 00 07 01"
+              isError={isError === "phone_number" || false}
+              maxLength={9}
               type="tel"
-              value={values.phone}
+              value={values.phone_number}
               onChange={handleChange}
               id="phone"
               required
             />
-            <p>უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</p>
+            <SEmployeeFormWarn isError={isError === "phone_number" || false}>უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</SEmployeeFormWarn>
           </SEmployeeFormEmailWrapper>
           <SEmployeeFormSubmitButton
-            onClick={() => navigate("/")}
             type="submit"
           >
             შემდეგი

@@ -42,35 +42,11 @@ export const SEmployeeFormInputWrapper = styled.div`
   }
 `;
 
-export const SEmployeeFormInput = styled.input`
-  width: 100%;
-  padding: 1.1rem;
-  font-family: inherit;
-  font-size: 1.1rem;
-  border: 1px solid #8ac0e2;
-  border-radius: 5px;
-  margin: 0.5rem 0;
-  outline: none;
-`;
-
 export const SEmployeeFormSelectWrapper = styled.div`
   grid-column: 1/3;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const SEmployeeFormSelect = styled.select`
-  width: 100%;
-  height: 3.7rem;
-  background: #ebebeb;
-  outline: none;
-  border: none;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  font-family: inherit;
-  font-weight: 500;
 `;
 
 export const SEmployeeFormEmailWrapper = styled.div`
@@ -109,6 +85,16 @@ export const SEmployeeFormSubmitButton = styled.button`
     background: #317ad0;
   }
 `;
+
+export const SEmployeeFormWarn = styled.p<{isError?: boolean}>`
+  color: ${props => {
+    if(props.isError){
+      return "#E52F2F !important"
+    }
+
+    return "#000"
+  }}
+`
 
 export const SEmployeeFormFooter = styled.footer`
   min-height: 20vh;

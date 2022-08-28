@@ -3,7 +3,7 @@ import {
   allowedCharacter,
   allowedPhoneChars,
 } from "../../constant/validAlphabet";
-import { FormTypes } from "../hook-types/useForm.types";
+import { FormTypes } from "../../types/Form.types";
 
 type UseFormValue = [
   FormTypes,
@@ -21,11 +21,11 @@ export const useForm = (initialValue: FormTypes): UseFormValue => {
     if (
       !allowedCharacter.includes(value.at(-1)) &&
       name !== "email" &&
-      name !== "phone" && 
+      name !== "phone_number" && 
       name !== "team"
       )
       return;
-      if (name === "phone" && !allowedPhoneChars.includes(value.at(-1))) return;
+      if (name === "phone_number" && !allowedPhoneChars.includes(value.at(-1))) return;
       
       setValues({
         ...values,
