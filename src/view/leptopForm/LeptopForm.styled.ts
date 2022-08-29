@@ -6,7 +6,7 @@ export const SLeptopFormWrapper = styled.div``;
 export const SLeptopForm = styled.form`
   max-width: 1200px;
   width: 100%;
-  height: 180vh;
+  height: 190vh;
   margin: 0 auto;
   margin-top: 1.2rem;
   background: #ffffff;
@@ -126,7 +126,22 @@ export const SLeptopFormFooter = styled.footer`
   align-items: center;
 `;
 
+export const SLeptopFormLariSpan = styled.span`
+  border: 1px solid #8ac0e2;
+  padding: 0.95rem;
+  display: inline-block;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: none;
+`;
+
+export const SLeptopFormLariIcon = styled.img``;
+
 export const SLeptopFormFooterLogo = styled.img``;
+
+SLeptopFormLariIcon.defaultProps = {
+  src: "assets/svg/lari.svg",
+};
 
 SLeptopFormFooterLogo.defaultProps = {
   src: "assets/svg/LOGO2.svg",

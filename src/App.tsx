@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/employee-form" element={<EmployeeInfo />} />
         <Route path="/laptops" element={<RecordLists />} />
-        <Route path="laptop/:id" element={<RecordInfo />} />
+        <Route path="/laptop/:id" element={<RecordInfo />} />
         <Route path="/complete" element={<Complete />} />
 
         {/* will be removed */}

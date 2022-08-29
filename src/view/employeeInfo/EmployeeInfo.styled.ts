@@ -36,7 +36,6 @@ const buttonStyles = css`
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 1.1rem;
-  cursor: pointer;
   position: relative;
   &.active-form {
     &::before {

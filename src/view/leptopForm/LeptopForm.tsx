@@ -12,11 +12,18 @@ import {
   SLeptopFormSaveButton,
   SLeptopFormFooter,
   SLeptopFormFooterLogo,
+  SLeptopFormLariSpan,
+  SLeptopFormLariIcon,
 } from "./LeptopForm.styled";
 import { PhotoUpload } from "../../components/PhotoUpload";
 import { SInput } from "../../components/SInput";
+import { EmployeeInfoRouteEnum } from "../employeeInfo/EmployeeInfo";
 
-export const LeptopForm = () => {
+interface Props {
+  setFormRoute: React.Dispatch<React.SetStateAction<EmployeeInfoRouteEnum>>;
+}
+
+export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
   return (
     <SLeptopFormWrapper>
       <SLeptopForm>
@@ -99,15 +106,28 @@ export const LeptopForm = () => {
                 name="laptop_purchase_date"
                 id="leptop-name"
               />
+              <p>&nbsp;</p>
             </div>
             <div>
               <label htmlFor="leptop-name">ლეპტოპის ფასი</label>
-              <SInput
-                type="text"
-                name="laptop_price"
-                id="leptop-name"
-                placeholder="0000"
-              />
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <SInput
+                  type="text"
+                  name="laptop_price"
+                  id="leptop-name"
+                  placeholder="0000"
+                  style={{
+                    borderRight: "none",
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                    display: "inline-block",
+                  }}
+                />
+                {/* goes in styled component */}
+                <SLeptopFormLariSpan>
+                  <SLeptopFormLariIcon />
+                </SLeptopFormLariSpan>
+              </div>
               <p>მხოლოდ ციფრები</p>
             </div>
           </SLeptopFormDateInputWrapper>
@@ -124,7 +144,12 @@ export const LeptopForm = () => {
               </div>
             </SLeptopFormRadioInputWrapper>
           </SLeptopFormInputWrapper>
-          <SLeptopFormBackButton type="button">უკან</SLeptopFormBackButton>
+          <SLeptopFormBackButton
+            onClick={() => setFormRoute(EmployeeInfoRouteEnum.EMPLOYEE_ROUTE)}
+            type="button"
+          >
+            უკან
+          </SLeptopFormBackButton>
           <SLeptopFormSaveButton type="submit">
             დამახსოვრება
           </SLeptopFormSaveButton>
