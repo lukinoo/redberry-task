@@ -18,12 +18,15 @@ import {
 import { PhotoUpload } from "../../components/PhotoUpload";
 import { SInput } from "../../components/SInput";
 import { EmployeeInfoRouteEnum } from "../employeeInfo/EmployeeInfo";
+import { useFetch } from "./hooks/useFetch";
 
 interface Props {
   setFormRoute: React.Dispatch<React.SetStateAction<EmployeeInfoRouteEnum>>;
 }
 
 export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
+  const [data] = useFetch();
+
   return (
     <SLeptopFormWrapper>
       <SLeptopForm>
@@ -40,11 +43,25 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
             <p>ლათინური ასოები, ციფრები, !@#$%^&*()_+=</p>
           </SLeptopFormInputWrapper>
           <SLeptopFormSelect name="laptop_brand_id">
-            <option>ლეპტოპის ბრენდი</option>
+            <option value={""} disabled>
+              ლეპტოპის ბრენდი
+            </option>
+            {data.brands.map((brand) => (
+              <option value={brand.name} key={brand.id}>
+                {brand.name}
+              </option>
+            ))}
           </SLeptopFormSelect>
           <SLeptopFormInfoWrapper>
             <SLeptopFormRAM name="laptop_cpu">
-              <option>16</option>
+              <option value={""} disabled>
+                CPU
+              </option>
+              {data.cpus.map((cpu) => (
+                <option key={cpu.id} value={cpu.name}>
+                  {cpu.name}
+                </option>
+              ))}
             </SLeptopFormRAM>
             <SLeptopFormInputWrapper>
               <label htmlFor="leptop-name">CPU-ს ბირთვი</label>
@@ -123,7 +140,6 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
                     display: "inline-block",
                   }}
                 />
-                {/* goes in styled component */}
                 <SLeptopFormLariSpan>
                   <SLeptopFormLariIcon />
                 </SLeptopFormLariSpan>
