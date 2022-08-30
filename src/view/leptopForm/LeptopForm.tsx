@@ -17,8 +17,10 @@ import {
 } from "./LeptopForm.styled";
 import { PhotoUpload } from "../../components/PhotoUpload";
 import { SInput } from "../../components/SInput";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { EmployeeInfoRouteEnum } from "../employeeInfo/EmployeeInfo";
 import { useFetch } from "./hooks/useFetch";
+import { useLaptopForm } from "./hooks/useLaptopForm";
 
 interface Props {
   setFormRoute: React.Dispatch<React.SetStateAction<EmployeeInfoRouteEnum>>;
@@ -27,22 +29,32 @@ interface Props {
 export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
   const [data] = useFetch();
 
+  // localstorage values
+  const [_, getLocalLeptop] = useLocalStorage();
+
+  console.log(getLocalLeptop)
+
+  // input handler
+  const [values, handleChange, fileUploadHandler] = useLaptopForm(getLocalLeptop);
+
   return (
     <SLeptopFormWrapper>
       <SLeptopForm>
         <SLeptopFormContainer>
-          <PhotoUpload onUpload={(file) => console.log(file)} />
+          <PhotoUpload onUpload={(file) => fileUploadHandler(file)} />
           <SLeptopFormInputWrapper>
             <label htmlFor="leptop-name">ლეპტოპის სახელი</label>
             <SInput
               type="text"
-              name="leptop_name"
+              name="laptop_name"
               id="leptop-name"
+              onChange={handleChange}
+              value={values.laptop_name}
               placeholder="HP"
             />
             <p>ლათინური ასოები, ციფრები, !@#$%^&*()_+=</p>
           </SLeptopFormInputWrapper>
-          <SLeptopFormSelect name="laptop_brand_id">
+          <SLeptopFormSelect onChange={handleChange} name="laptop_brand_id" value={values.laptop_brand_id}>
             <option value={""} disabled>
               ლეპტოპის ბრენდი
             </option>
@@ -53,7 +65,7 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
             ))}
           </SLeptopFormSelect>
           <SLeptopFormInfoWrapper>
-            <SLeptopFormRAM name="laptop_cpu">
+            <SLeptopFormRAM onChange={handleChange} name="laptop_cpu" value={values.laptop_cpu}>
               <option value={""} disabled>
                 CPU
               </option>
@@ -69,6 +81,8 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
                 type="number"
                 name="laptop_cpu_cores"
                 id="leptop-name"
+                onChange={handleChange}
+                value={values.laptop_cpu_cores}
                 placeholder="14"
               />
               <p>მხოლოდ ციფრები</p>
@@ -79,6 +93,8 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
                 type="number"
                 name="laptop_cpu_threads"
                 id="leptop-name"
+                onChange={handleChange}
+                value={values.laptop_cpu_threads}
                 placeholder="365"
               />
               <p>მხოლოდ ციფრები</p>
@@ -90,6 +106,8 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
               type="number"
               name="laptop_ram"
               id="leptop-name"
+              onChange={handleChange}
+              value={values.laptop_ram}
               placeholder="HP"
             />
             <p>მხოლოდ ციფრები</p>
@@ -101,6 +119,9 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
                 <input
                   type="radio"
                   name="laptop_hard_drive_type"
+                  onChange={handleChange}
+                  value="SSD"
+                  checked={values.laptop_hard_drive_type === "SSD" || false}
                   id="leptop-name"
                 />
                 <label htmlFor="leptop-name">SSD</label>
@@ -108,7 +129,10 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
               <div>
                 <input
                   type="radio"
+                  onChange={handleChange}
                   name="laptop_hard_drive_type"
+                  value="HDD"
+                  checked={values.laptop_hard_drive_type === "HDD" || false}
                   id="leptop-name"
                 />
                 <label htmlFor="leptop-name">HDD</label>
@@ -120,7 +144,9 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
               <label htmlFor="leptop-name">შეძენის რიცხვი (არჩევითი)</label>
               <SInput
                 type="date"
+                onChange={handleChange}
                 name="laptop_purchase_date"
+                value={values.laptop_purchase_date}
                 id="leptop-name"
               />
               <p>&nbsp;</p>
@@ -132,6 +158,8 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
                   type="text"
                   name="laptop_price"
                   id="leptop-name"
+                  onChange={handleChange}
+                  value={values.laptop_price}
                   placeholder="0000"
                   style={{
                     borderRight: "none",
@@ -151,11 +179,25 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute }) => {
             <label style={{ margin: "0 0 2rem 0" }}>ლეპტოპის მდგომარეობა</label>
             <SLeptopFormRadioInputWrapper>
               <div>
-                <input type="radio" name="laptop_stats" id="leptop-name" />
+                <input
+                  type="radio"
+                  value="ახალი"
+                  onChange={handleChange}
+                  checked={values.laptop_stats === "ახალი" || false}
+                  name="laptop_stats"
+                  id="leptop-name"
+                />
                 <label htmlFor="leptop-name">ახალი</label>
               </div>
               <div>
-                <input type="radio" name="laptop_stats" id="leptop-name" />
+                <input
+                  type="radio"
+                  value="მეორადი"
+                  checked={values.laptop_stats === "მეორადი" || false}
+                  name="laptop_stats"
+                  onChange={handleChange}
+                  id="leptop-name"
+                />
                 <label htmlFor="leptop-name">მეორადი</label>
               </div>
             </SLeptopFormRadioInputWrapper>

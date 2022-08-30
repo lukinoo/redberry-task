@@ -18,7 +18,7 @@ export const useLocalStorage = (): [FormTypes, any] => {
     };
   }
 
-  if (stored_value_laptop !== null) {
+  if (stored_value_laptop === null) {
     parsedLeptop = {
       laptop_name: "",
       laptop_image: "",

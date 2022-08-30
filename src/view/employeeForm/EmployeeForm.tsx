@@ -4,7 +4,7 @@ import { SInput } from "../../components/SInput";
 import { SSelect } from "../../components/SSelect";
 
 import { FormTypes } from "../../types/Form.types";
-import { useValidation } from "../../hooks/useValidation/useValidation";
+import { useValidation } from "./hooks/useValidation";
 
 import { useFetch } from "./hooks/useFetch";
 import {

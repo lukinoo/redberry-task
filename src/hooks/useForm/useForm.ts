@@ -36,7 +36,8 @@ export const useForm = (initialValue: FormTypes): UseFormValue => {
         ...values,
         [e.target.name]: e.target.value,
       });
-      localStorage.setItem("@employee-info", strigifyObject);
+      
+      localStorage.setItem("@employee-info", strigifyObject)
   };
 
   return [values, inputHandler];
