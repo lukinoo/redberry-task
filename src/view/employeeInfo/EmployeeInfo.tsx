@@ -25,6 +25,8 @@ export const EmployeeInfo = () => {
   const [globalForm, setGlobalForm] =
     useState<SendRequestType>(initalGlobalForm);
 
+    console.log(globalForm)
+
   return (
     <SEmployee>
       <SEmployeeHeader>
@@ -66,7 +68,12 @@ export const EmployeeInfo = () => {
         />
       )}
       {formRoute === EmployeeInfoRouteEnum.LAPTOP_ROUTE && (
-        <LeptopForm setFormRoute={setFormRoute} />
+        <LeptopForm setFormRoute={setFormRoute} setupRequest={(form) => {
+          setGlobalForm(prev => ({
+            ...prev, 
+            ...form
+          }))
+        }}/>
       )}
     </SEmployee>
   );

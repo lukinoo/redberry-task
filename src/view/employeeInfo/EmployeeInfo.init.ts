@@ -19,5 +19,5 @@ export const initalGlobalForm: SendRequestType = {
   phone_number: '',
   team_id: 0,
   position_id: 0,
-  token: ''
+  token: '5f55aaeb6fb1997cca7f5197173d3737'
 }

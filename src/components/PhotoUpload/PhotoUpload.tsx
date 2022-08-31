@@ -12,18 +12,18 @@ import {
   SPhotoUploadWarn
 } from "./SPhotoUpload.styled";
 
-export const PhotoUpload: FC<PhotoUploadProps> = ({ onUpload, isError }) => {
-  const { blobSource, fileUploadHandler, uploadedPhoto } = useUploadHandler();
+export const PhotoUpload: FC<PhotoUploadProps> = ({ onUpload, isError, blobSourcePath }) => {
+  const { fileUploadHandler, uploadedPhoto } = useUploadHandler();
 
   const onUploadCallback = (file: File) => {
     fileUploadHandler(file);
     onUpload(file);
   };
 
-  if (blobSource && uploadedPhoto) {
+  if (blobSourcePath && uploadedPhoto) {
     return (
       <SPhotoUpload isError={isError}>
-        <SPhotoUploadedPhoto src={blobSource} role="img" />
+        <SPhotoUploadedPhoto src={blobSourcePath} role="img" />
         <FileUploader
           types={["JPG", "PNG"]}
           onDrop={(file: File) => onUploadCallback(file)}

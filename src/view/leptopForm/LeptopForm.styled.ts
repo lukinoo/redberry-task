@@ -6,7 +6,7 @@ export const SLeptopFormWrapper = styled.div``;
 export const SLeptopForm = styled.form`
   max-width: 1200px;
   width: 100%;
-  height: 190vh;
+  height: 200vh;
   margin: 0 auto;
   margin-top: 1.2rem;
   background: #ffffff;
@@ -25,19 +25,43 @@ export const SLeptopFormContainer = styled.div`
   grid-gap: 0 3.5rem;
 `;
 
-export const SLeptopFormInputWrapper = styled.div`
+export const SLeptopFormInputWrapper = styled.div<{ isError?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  label {
-    font-size: 1.2em;
-    font-weight: 500;
-    color: #000000;
-  }
   p {
     font-size: 0.8rem;
     font-weight: 300;
     color: #2e2e2e;
+  }
+`;
+
+export const SLeptopFormInputLabel = styled.label<{ isError?: boolean }>`
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #000000;
+  display: flex;
+  color: ${(props) => {
+    if (props.isError) {
+      return "#E52F2F !important";
+    }
+
+    return "#000";
+  }};
+  span {
+    display: inline-block;
+    margin-left: 0.7rem;
+    img {
+      width: 20px;
+      height: 20px;
+      display: ${(props) => {
+        if (props.isError) {
+          return "block";
+        }
+
+        return "none";
+      }};
+    }
   }
 `;
 
@@ -98,6 +122,43 @@ export const SLeptopFormBackButton = styled.button`
   letter-spacing: 3px;
   font-size: 1.1rem;
   cursor: pointer;
+`;
+
+export const SLeptopFormUploadAgainButton = styled.button`
+  padding: 1.1rem 2rem;
+  background: #62a1eb;
+  color: #ffffff;
+  position: relative;
+  justify-self: flex-end;
+  align-self: center;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  letter-spacing: 2px;
+  font-family: inherit;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  input[type="file"]{
+    position:absolute;
+    opacity: 0;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  };
+  transition: background 0.2s ease;
+  &:hover {
+    background: #317ad0;
+  }
+`;
+
+export const SLeptopFormImageWarnWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0 1.5rem;
+  }
 `;
 
 export const SLeptopFormSaveButton = styled.button`

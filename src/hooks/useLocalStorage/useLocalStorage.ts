@@ -16,12 +16,13 @@ export const useLocalStorage = (): [FormTypes, any] => {
       email: "",
       phone_number: "",
     };
+    localStorage.setItem("@employee-info", JSON.stringify(parsedEmployee));
   }
 
   if (stored_value_laptop === null) {
     parsedLeptop = {
       laptop_name: "",
-      laptop_image: "",
+      laptop_image: new File([""], "file-name"),
       laptop_brand_id: 0,
       laptop_cpu: "",
       laptop_cpu_cores: 0,
@@ -29,9 +30,10 @@ export const useLocalStorage = (): [FormTypes, any] => {
       laptop_ram: 0,
       laptop_hard_drive_type: "",
       laptop_stats: "",
-      laptop_purchase_data: "",
+      laptop_purchase_date: "",
       laptop_price: 0,
     };
+    localStorage.setItem("@laptop-info", JSON.stringify(parsedLeptop));
   }
 
   return [parsedEmployee, parsedLeptop];

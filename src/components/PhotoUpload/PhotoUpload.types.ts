@@ -1,4 +1,5 @@
 export interface PhotoUploadProps {
   onUpload: (file: File) => void,
-  isError?: boolean
+  isError?: boolean,
+  blobSourcePath?: string
 }
