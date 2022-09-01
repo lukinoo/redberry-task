@@ -74,7 +74,8 @@ export const EmployeeForm: FC<EmployeeFormProps> = ({
 
       const insertObject = {
         name: values.name,
-        lastname: values.lastname,
+        surname: values.surname,
+        phone_number: `+995${values.phone_number}`,
         email: values.email,
         team_id: findId!.id,
         position_id: findPostions!.id,
@@ -105,18 +106,18 @@ export const EmployeeForm: FC<EmployeeFormProps> = ({
             </SEmployeeFormWarn>
           </SEmployeeFormInputWrapper>
           <SEmployeeFormInputWrapper>
-            <label htmlFor="lastname">გვარი</label>
+            <label htmlFor="surname">გვარი</label>
             <SInput
-              isError={isError === "lastname" || false}
-              name="lastname"
+              isError={isError === "surname" || false}
+              name="surname"
               placeholder="გვარი"
               type="text"
-              value={values.lastname}
+              value={values.surname}
               onChange={handleChange}
-              id="lastname"
+              id="surname"
               required
             />
-            <SEmployeeFormWarn isError={isError === "lastname" || false}>
+            <SEmployeeFormWarn isError={isError === "surname" || false}>
               მინიმუმ 2 სიმბოლო, ქართული ასოები
             </SEmployeeFormWarn>
           </SEmployeeFormInputWrapper>

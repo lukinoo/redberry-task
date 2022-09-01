@@ -23,7 +23,7 @@ import { PhotoUpload } from "../../components/PhotoUpload";
 import { useValidation } from "./hooks/useValidation";
 import { SInput } from "../../components/SInput";
 import { calculateFileSize } from "./utils/calculateFileSize";
-import {LeptopTypes} from "../../types/Form.types"
+import { LeptopTypes } from "../../types/Form.types";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { EmployeeInfoRouteEnum } from "../employeeInfo/EmployeeInfo";
 import { useFetch } from "./hooks/useFetch";
@@ -31,7 +31,7 @@ import { useLaptopForm } from "./hooks/useLaptopForm";
 
 interface Props {
   setFormRoute: React.Dispatch<React.SetStateAction<EmployeeInfoRouteEnum>>;
-  setupRequest: (data: LeptopTypes) => void
+  setupRequest: (data: LeptopTypes) => void;
 }
 
 export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
@@ -46,7 +46,7 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
   const [validation] = useValidation(values);
 
   const [isError, setIsError] = useState<string | undefined>(undefined);
-  const formatFile = new FormData()
+  const formatFile = new FormData();
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,29 +68,35 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
 
     setIsError(validationError);
 
-    if(validationError === undefined){
-      formatFile.append("file", values.laptop_image)
+    if (validationError === undefined) {
+      formatFile.append("file", values.laptop_image);
 
-      const findBrandId = data.brands.find(e => e.name === values.laptop_brand_id as any)
+      const findBrandId = data.brands.find(
+        (e) => e.name === (values.laptop_brand_id as any)
+      );
 
       const prepObject: LeptopTypes = {
         laptop_cpu: values.laptop_cpu,
         laptop_cpu_cores: values.laptop_cpu_cores,
         laptop_hard_drive_type: values.laptop_hard_drive_type,
         laptop_name: values.laptop_name,
-        laptop_stats: values.laptop_stats,
+        laptop_state: values.laptop_state === "ახალი" ? "new" : "used",
         laptop_cpu_threads: values.laptop_cpu_threads,
         laptop_price: values.laptop_price,
         laptop_purchase_date: values.laptop_purchase_date,
         laptop_ram: values.laptop_ram,
-        laptop_image: formatFile as any,
-        laptop_brand_id: Number(findBrandId!.id)
-      }
+        laptop_image: values.laptop_image,
+        laptop_brand_id: Number(findBrandId!.id),
+      };
 
-      setupRequest(prepObject)
+      setupRequest(prepObject);
     }
   };
 
+  const r = new FileReader();
+
+  // console.log(values.lapt)
+  // static width in css
   return (
     <SLeptopFormWrapper>
       <SLeptopForm onSubmit={submitHandler}>
@@ -211,16 +217,14 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
           <SLeptopFormInputWrapper>
             <SLeptopFormInputLabel
               isError={isError === "laptop_hard_drive_type" || false}
-              style={{ margin: "0 0 1rem 0", display: 'flex' }}
+              style={{ margin: "0 0 1rem 0", display: "flex" }}
             >
               მეხსიერების ტიპი
-              {
-                isError === "laptop_hard_drive_type" && (
-                  <span>
-                    <img src="assets/svg/warn.svg" alt="" />
-                  </span>
-                )
-              }
+              {isError === "laptop_hard_drive_type" && (
+                <span>
+                  <img src="assets/svg/warn.svg" alt="" />
+                </span>
+              )}
             </SLeptopFormInputLabel>
             <SLeptopFormRadioInputWrapper>
               <div>
@@ -254,11 +258,11 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
               </label>
               <SInput
                 type="date"
-                isError={isError === "laptop_purchase_date" || false}
                 onChange={handleChange}
                 name="laptop_purchase_date"
                 value={values.laptop_purchase_date}
                 id="laptop_purchase_date"
+                isError={isError === "laptop_purchase_date" || false}
               />
               <p>&nbsp;</p>
             </div>
@@ -289,40 +293,38 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
           </SLeptopFormDateInputWrapper>
           <SLeptopFormInputWrapper style={{ gridColumn: "1/3" }}>
             <SLeptopFormInputLabel
-              isError={isError === "laptop_stats" || false}
+              isError={isError === "laptop_state" || false}
               style={{ margin: "0 0 2rem 0" }}
             >
               ლეპტოპის მდგომარეობა
+              {isError === "laptop_state" && (
+                <span>
+                  <img src="assets/svg/warn.svg" alt="" />
+                </span>
+              )}
             </SLeptopFormInputLabel>
-            {
-                isError === "laptop_stats" && (
-                  <span>
-                    <img src="assets/svg/warn.svg" alt="" />
-                  </span>
-                )
-              }
             <SLeptopFormRadioInputWrapper>
               <div>
                 <input
                   type="radio"
                   value="ახალი"
                   onChange={handleChange}
-                  checked={values.laptop_stats === "ახალი" || false}
-                  name="laptop_stats"
-                  id="leptop_stats"
+                  checked={values.laptop_state === "ახალი" || false}
+                  name="laptop_state"
+                  id="leptop_state"
                 />
-                <label htmlFor="leptop_stats">ახალი</label>
+                <label htmlFor="leptop_state">ახალი</label>
               </div>
               <div>
                 <input
                   type="radio"
                   value="მეორადი"
-                  checked={values.laptop_stats === "მეორადი" || false}
-                  name="laptop_stats"
+                  checked={values.laptop_state === "მეორადი" || false}
+                  name="laptop_state"
                   onChange={handleChange}
-                  id="leptop_stats"
+                  id="leptop_state"
                 />
-                <label htmlFor="leptop_stats">მეორადი</label>
+                <label htmlFor="leptop_state">მეორადი</label>
               </div>
             </SLeptopFormRadioInputWrapper>
           </SLeptopFormInputWrapper>

@@ -10,7 +10,7 @@ export const useLocalStorage = (): [FormTypes, any] => {
   if (stored_value_employee === null) {
     parsedEmployee = {
       name: "",
-      lastname: "",
+      surname: "",
       team: "",
       position: "",
       email: "",
@@ -29,7 +29,7 @@ export const useLocalStorage = (): [FormTypes, any] => {
       laptop_cpu_threads: 0,
       laptop_ram: 0,
       laptop_hard_drive_type: "",
-      laptop_stats: "",
+      laptop_state: "",
       laptop_purchase_date: "",
       laptop_price: 0,
     };
