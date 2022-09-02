@@ -13,6 +13,11 @@ import {
 export const Home = () => {
   const [homeImage] = useResponsive();
 
+  const src_check: string =
+    (window.innerWidth as number) > 768
+      ? "assets/img/Group1.png"
+      : "assets/img/Group.png";
+
   return (
     <SHome>
       <SHomeHeader>
@@ -20,7 +25,7 @@ export const Home = () => {
       </SHomeHeader>
       <SHomeSection>
         <SHomeSectionImgWrapper>
-          <SHomeSectionImg src={homeImage} />
+          <SHomeSectionImg src={homeImage || src_check} />
         </SHomeSectionImgWrapper>
         <SHomeSectionButtonsWrapper>
           <SHomeButton to="/employee-form">ჩანაწერის დამატება</SHomeButton>

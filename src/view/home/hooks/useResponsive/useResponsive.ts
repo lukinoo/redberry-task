@@ -7,7 +7,7 @@ enum ResponsiveSrcEnum {
 }
 
 export const useResponsive = (): useResponsiveType => {
-  const [homeImage, setHomeImage] = useState<string>("assets/img/Group1.png");
+  const [homeImage, setHomeImage] = useState<string>("");
 
   const handleResponsiveImage = (e: Event) => {
     const { innerWidth } = e.target as Window;
