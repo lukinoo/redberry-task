@@ -7,6 +7,9 @@ export const SCompleteContainer = styled.div`
   justify-content: center;
   align-items: center;
   background: #4a4a4a;
+  @media screen and (max-width: 768px) {
+    background: #ffffff;
+  }
 `;
 
 export const SCompletePopUp = styled.div`
@@ -19,6 +22,9 @@ export const SCompletePopUp = styled.div`
   justify-content: space-evenly;
   background: #ffffff;
   border-radius: 8px;
+  @media screen and (max-width: 768px) {
+    justify-content: space-around;
+  }
 `;
 
 export const SCompleteImage = styled.img``;
