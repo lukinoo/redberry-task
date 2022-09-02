@@ -1,4 +1,4 @@
-import React from "react";
+import { useResponsive } from "./hooks/useResponsive";
 import {
   SHome,
   SHomeHeader,
@@ -7,16 +7,21 @@ import {
   SHomeSectionImg,
   SHomeSectionButtonsWrapper,
   SHomeButton,
+  SHomeSectionImgWrapper,
 } from "./SHome.styled";
 
 export const Home = () => {
+  const [homeImage] = useResponsive();
+
   return (
     <SHome>
       <SHomeHeader>
         <SHomeLogo />
       </SHomeHeader>
       <SHomeSection>
-        <SHomeSectionImg src={"assets/img/Group1.png"} />
+        <SHomeSectionImgWrapper>
+          <SHomeSectionImg src={homeImage} />
+        </SHomeSectionImgWrapper>
         <SHomeSectionButtonsWrapper>
           <SHomeButton to="/employee-form">ჩანაწერის დამატება</SHomeButton>
           <SHomeButton to="/record-list">ჩანაწერის სია</SHomeButton>

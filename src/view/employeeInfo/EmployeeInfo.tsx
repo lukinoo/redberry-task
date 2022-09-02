@@ -21,6 +21,7 @@ export enum EmployeeInfoRouteEnum {
   EMPLOYEE_ROUTE = "EMPLOYEE_ROUTE",
   LAPTOP_ROUTE = "LAPTOP_ROUTE",
 }
+
 export const EmployeeInfo = () => {
   const [formRoute, setFormRoute] = useState<EmployeeInfoRouteEnum>(
     EmployeeInfoRouteEnum.EMPLOYEE_ROUTE
@@ -30,7 +31,10 @@ export const EmployeeInfo = () => {
 
   const addLaptop = async () => {
     axios
-      .post("https://pcfy.redberryinternship.ge/api/laptop/create", {...globalForm, laptop_image: getBinaryFromFile(globalForm.laptop_image)})
+      .post("https://pcfy.redberryinternship.ge/api/laptop/create", {
+        ...globalForm,
+        laptop_image: getBinaryFromFile(globalForm.laptop_image),
+      })
       .then((resp) => {
         console.log(resp);
       })

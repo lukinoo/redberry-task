@@ -21,6 +21,8 @@ export const SHomeSection = styled.section`
   justify-content: space-around;
 `;
 
+export const SHomeSectionImgWrapper = styled.div``;
+
 export const SHomeSectionImg = styled.img`
   max-width: 700px;
   width: 100%;

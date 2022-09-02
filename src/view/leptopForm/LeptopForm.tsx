@@ -93,7 +93,7 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
     }
   };
 
-  const r = new FileReader();
+  // const r = new FileReader();
 
   // console.log(values.lapt)
   // static width in css
