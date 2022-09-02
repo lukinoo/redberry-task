@@ -8,6 +8,7 @@ import { Complete } from "./view/Complete";
 
 //will be removed
 import { RecordCard } from "./components/RecordCard";
+import { EachLaptop } from "./view/EachLaptop";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/record-list" element={<RecordLists />} />
         <Route path="/record-list/:id" element={<RecordInfo />} />
         <Route path="/complete" element={<Complete />} />
+        <Route path="/test" element={<EachLaptop />} />
 
         {/* will be removed */}
         <Route

@@ -1,0 +1,1 @@
+export { EachLaptop } from "./EachLaptop";
