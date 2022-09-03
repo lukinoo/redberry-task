@@ -25,7 +25,7 @@ import { SInput } from "../../components/SInput";
 import { calculateFileSize } from "./utils/calculateFileSize";
 import { LeptopTypes } from "../../types/Form.types";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { EmployeeInfoRouteEnum } from "../employeeInfo/EmployeeInfo";
+import { EmployeeInfoRouteEnum } from "../EmployeeInfo/EmployeeInfo";
 import { useFetch } from "./hooks/useFetch";
 import { useLaptopForm } from "./hooks/useLaptopForm";
 import { Loading } from "../../components/Loading";
@@ -343,7 +343,6 @@ export const LeptopForm: React.FC<Props> = ({
             უკან
           </SLeptopFormBackButton>
           <SLeptopFormSaveButton disabled={isLoading} type="submit">
-            {/* დამახსოვრება */}
             {isLoading ? <Loading /> : "დამახსოვრება"}
           </SLeptopFormSaveButton>
         </SLeptopFormContainer>

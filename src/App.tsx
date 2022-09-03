@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Home } from "./view/home";
-import { EmployeeInfo } from "./view/employeeInfo";
+import { Home } from "./view/Home";
+import { EmployeeInfo } from "./view/EmployeeInfo";
 import { RecordLists } from "./view/RecordLists";
 import { Complete } from "./view/Complete";
 import { EachLaptop } from "./view/EachLaptop";

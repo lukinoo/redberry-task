@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { EmployeeForm } from "../employeeForm";
-import { LeptopForm } from "../leptopForm";
+import { EmployeeForm } from "../EmployeeForm";
+import { LeptopForm } from "../LeptopForm";
 import {
   SEmployee,
   SEmployeeHeader,
@@ -42,6 +42,7 @@ export const EmployeeInfo = () => {
           headers: {
             accept: "application/json",
             "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
           },
         }
       )

@@ -1,19 +1,17 @@
-import {screen, render, waitFor} from '@testing-library/react'
-import {MemoryRouter} from 'react-router-dom'
-import App from './App'
+import { screen, render } from "@testing-library/react";
+import App from "./App";
 
+describe("[Component] App", () => {
+  it("should render router component", () => {
+    render(<App />);
 
-describe('[Component] App', () => {
-  it('should render router component', () => {
-    render(<App />)
-  
-    expect(screen.getByTestId('application')).toBeInTheDocument();
-  })
+    expect(screen.getByTestId("application")).toBeInTheDocument();
+  });
 
-  it('should render home page', () => {
-    render(<App />)
+  it("should render home page", () => {
+    render(<App />);
 
-    expect(screen.getByText('ჩანაწერის დამატება')).toBeInTheDocument()
-    expect(screen.getByText('ჩანაწერის სია')).toBeInTheDocument()
-  })
-}) 
+    expect(screen.getByText("ჩანაწერის დამატება")).toBeInTheDocument();
+    expect(screen.getByText("ჩანაწერის სია")).toBeInTheDocument();
+  });
+});
