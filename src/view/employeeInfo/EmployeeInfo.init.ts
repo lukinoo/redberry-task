@@ -18,5 +18,5 @@ export const initalGlobalForm: SendRequestType = {
   phone_number: "",
   team_id: 0,
   position_id: 0,
-  token: "5f55aaeb6fb1997cca7f5197173d3737",
+  token: process.env.REACT_APP_TOKEN as string,
 };

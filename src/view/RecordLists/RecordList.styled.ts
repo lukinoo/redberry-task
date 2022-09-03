@@ -53,8 +53,7 @@ export const SRecordListWrapper = styled.div`
   }
 `;
 
-export const SRecordListItems = styled.div`
-`;
+export const SRecordListItems = styled.div``;
 
 export const SRecordListEachItem = styled.div`
   width: 100%;
@@ -69,6 +68,8 @@ export const SRecordListEachItem = styled.div`
     border-radius: 10px;
   }
   img {
+    max-width: 200px;
+    width: 100%;
     @media screen and (max-width: 768px) {
       max-width: 150px;
       width: 100%;

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useFetchList } from "./hooks/useFetchList";
+import { useEffect, useState } from "react";
+// import { useFetchList } from "./hooks/useFetchList";
 import {
   SRecordHeaderBackArrow,
   SRecordHeaderBackBtn,
@@ -13,16 +13,28 @@ import {
   SRecordListWrapper,
 } from "./RecordList.styled";
 
+interface RecordListTypes {
+  laptop: {
+    image: string;
+    name: string;
+    id: number;
+  };
+  user: {
+    name: string;
+    surname: string;
+  };
+}
+
 export const RecordLists = () => {
-  // const [data] = useFetchList();
+  const [recordLists, setRecordLists] = useState<RecordListTypes[]>([]);
 
   useEffect(() => {
     axios
       .get(
-        `https://pcfy.redberryinternship.ge/api/laptops?token=${process.env.TOKEN}`
+        `https://pcfy.redberryinternship.ge/api/laptops?token=${process.env.REACT_APP_TOKEN}`
       )
       .then((res) => {
-        console.log(res);
+        setRecordLists(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -38,76 +50,30 @@ export const RecordLists = () => {
         <SRecordHeaderTitle>ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ</SRecordHeaderTitle>
       </SRecordListHeader>
       <SRecordListWrapper>
-        <SRecordListItems>
-          <SRecordListEachItem>
-            <img src="assets/img/item.png" alt="" />
-            <SRecordListEachItemInfoWrapp>
-              <h3>ირინე ჩანქსელიანი</h3>
-              <h5>Pentium II</h5>
-              <p>მეტის ნახვა</p>
-            </SRecordListEachItemInfoWrapp>
-          </SRecordListEachItem>
-        </SRecordListItems>
-        <SRecordListItems>
-          <SRecordListEachItem>
-            <img src="assets/img/item.png" alt="" />
-            <SRecordListEachItemInfoWrapp>
-              <h3>ირინე ჩანქსელიანი</h3>
-              <h5>Pentium II</h5>
-              <p>მეტის ნახვა</p>
-            </SRecordListEachItemInfoWrapp>
-          </SRecordListEachItem>
-        </SRecordListItems>
-        <SRecordListItems>
-          <SRecordListEachItem>
-            <img src="assets/img/item.png" alt="" />
-            <SRecordListEachItemInfoWrapp>
-              <h3>ირინე ჩანქსელიანი</h3>
-              <h5>Pentium II</h5>
-              <p>მეტის ნახვა</p>
-            </SRecordListEachItemInfoWrapp>
-          </SRecordListEachItem>
-        </SRecordListItems>
-        <SRecordListItems>
-          <SRecordListEachItem>
-            <img src="assets/img/item.png" alt="" />
-            <SRecordListEachItemInfoWrapp>
-              <h3>ირინე ჩანქსელიანი</h3>
-              <h5>Pentium II</h5>
-              <p>მეტის ნახვა</p>
-            </SRecordListEachItemInfoWrapp>
-          </SRecordListEachItem>
-        </SRecordListItems>
-        <SRecordListItems>
-          <SRecordListEachItem>
-            <img src="assets/img/item.png" alt="" />
-            <SRecordListEachItemInfoWrapp>
-              <h3>ირინე ჩანქსელიანი</h3>
-              <h5>Pentium II</h5>
-              <p>მეტის ნახვა</p>
-            </SRecordListEachItemInfoWrapp>
-          </SRecordListEachItem>
-        </SRecordListItems>
-        <SRecordListItems>
-          <SRecordListEachItem>
-            <img src="assets/img/item.png" alt="" />
-            <SRecordListEachItemInfoWrapp>
-              <h3>ირინე ჩანქსელიანი</h3>
-              <h5>Pentium II</h5>
-              <p>მეტის ნახვა</p>
-            </SRecordListEachItemInfoWrapp>
-          </SRecordListEachItem>
-        </SRecordListItems>
-        <SRecordListItems>
-          <SRecordListEachItem>
-            <img src="assets/img/item.png" alt="" />
-            <SRecordListEachItemInfoWrapp>
-              <h3>ირინე ჩანქსელიანი</h3>
-              <h5>Pentium II</h5>
-              <p>მეტის ნახვა</p>
-            </SRecordListEachItemInfoWrapp>
-          </SRecordListEachItem>
-        </SRecordListItems>
+        {(recordLists || []).map((recordList) => {
+          const {
+            laptop: { id, image },
+            user: { name, surname },
+          } = recordList;
+
+          return (
+            <SRecordListItems key={id}>
+              <SRecordListEachItem>
+                <img
+                  src={"https://pcfy.redberryinternship.ge" + image}
+                  alt=""
+                />
+                <SRecordListEachItemInfoWrapp>
+                  <h3>
+                    {name} {surname}
+                  </h3>
+                  <h5>{recordList.laptop.name}</h5>
+                  <p>მეტის ნახვა</p>
+                </SRecordListEachItemInfoWrapp>
+              </SRecordListEachItem>
+            </SRecordListItems>
+          );
+        })}
       </SRecordListWrapper>
     </SRecordListContainer>
   );
