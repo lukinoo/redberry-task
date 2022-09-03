@@ -13,6 +13,7 @@ export const useFetchList = async () => {
     setData(responseData);
   };
 
+  console.log(data);
   useEffect(() => {
     fetchLaptopList();
   }, []);

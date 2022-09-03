@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EmployeeForm } from "../employeeForm";
 import { LeptopForm } from "../leptopForm";
 import {
@@ -9,9 +9,9 @@ import {
   SEmployeeHeaderButtonEmloyee,
   SEmployeeHeaderButtonLeptop,
   SEmployeeHeaderIndicator,
+  SEmployeeHeaderMobileIndicator,
 } from "./EmployeeInfo.styled";
-
-import { getBinaryFromFile } from "../../utils/getBinaryFromFile";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -29,21 +29,38 @@ export const EmployeeInfo = () => {
   );
   const [globalForm, setGlobalForm] =
     useState<SendRequestType>(initalGlobalForm);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const addLaptop = async () => {
+  const addLaptop = () => {
+    setIsLoading(true);
     axios
-      .post("https://pcfy.redberryinternship.ge/api/laptop/create", {
-        // api -> X
-        ...globalForm,
-        laptop_image: getBinaryFromFile(globalForm.laptop_image),
-      })
+      .post(
+        "https://pcfy.redberryinternship.ge/api/laptop/create",
+        globalForm,
+        {
+          headers: {
+            accept: "application/json",
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((resp) => {
-        console.log(resp);
+        setIsLoading(false);
+        if (resp.data.message === "Information recorded") {
+          navigate("/complete");
+          localStorage.removeItem("@employee-info");
+          localStorage.removeItem("@laptop-info");
+        }
       })
       .catch((err) => {
+        setIsLoading(true);
         console.log(err);
       });
   };
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [formRoute]);
 
   return (
     <SEmployee>
@@ -51,6 +68,11 @@ export const EmployeeInfo = () => {
         <SEmployeeHeaderBackBtn to="/">
           <SEmployeeBackArrow />
         </SEmployeeHeaderBackBtn>
+        <SEmployeeHeaderMobileIndicator>
+          {formRoute === EmployeeInfoRouteEnum.EMPLOYEE_ROUTE
+            ? "თანამშრომლის ინფო"
+            : "ლეპტოპის მახასიათებლები"}
+        </SEmployeeHeaderMobileIndicator>
         <SEmployeeHeaderButtonEmloyee
           className={
             formRoute === EmployeeInfoRouteEnum.EMPLOYEE_ROUTE
@@ -91,14 +113,11 @@ export const EmployeeInfo = () => {
       {formRoute === EmployeeInfoRouteEnum.LAPTOP_ROUTE && (
         <LeptopForm
           setFormRoute={setFormRoute}
+          isLoading={isLoading}
           setupRequest={(form) => {
-            setGlobalForm((prev) => ({
-              ...prev,
-              ...form,
-            }));
-
-            addLaptop();
+            setGlobalForm((prev) => ({ ...prev, ...form }));
           }}
+          sendLaptop={addLaptop}
         />
       )}
     </SEmployee>

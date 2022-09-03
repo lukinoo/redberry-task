@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   SLeptopFormWrapper,
   SLeptopForm,
@@ -28,13 +28,21 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { EmployeeInfoRouteEnum } from "../employeeInfo/EmployeeInfo";
 import { useFetch } from "./hooks/useFetch";
 import { useLaptopForm } from "./hooks/useLaptopForm";
+import { Loading } from "../../components/Loading";
 
 interface Props {
   setFormRoute: React.Dispatch<React.SetStateAction<EmployeeInfoRouteEnum>>;
   setupRequest: (data: LeptopTypes) => void;
+  sendLaptop: () => void;
+  isLoading: boolean;
 }
 
-export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
+export const LeptopForm: React.FC<Props> = ({
+  setFormRoute,
+  setupRequest,
+  sendLaptop,
+  isLoading,
+}) => {
   const [data] = useFetch();
 
   // localstorage values
@@ -46,7 +54,27 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
   const [validation] = useValidation(values);
 
   const [isError, setIsError] = useState<string | undefined>(undefined);
-  const formatFile = new FormData();
+
+  const setPrepObject = () => {
+    const findBrandId =
+      data.brands.find((e) => e.name === (values.laptop_brand_id as any)) || 0;
+
+    const prepObject: LeptopTypes = {
+      laptop_cpu: values.laptop_cpu,
+      laptop_cpu_cores: values.laptop_cpu_cores,
+      laptop_hard_drive_type: values.laptop_hard_drive_type,
+      laptop_name: values.laptop_name,
+      laptop_state: values.laptop_state === "ახალი" ? "new" : "used",
+      laptop_cpu_threads: values.laptop_cpu_threads,
+      laptop_price: values.laptop_price,
+      laptop_purchase_date: values.laptop_purchase_date,
+      laptop_ram: values.laptop_ram,
+      laptop_image: values.laptop_image,
+      laptop_brand_id: Number((findBrandId as any).id),
+    };
+
+    return prepObject;
+  };
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,34 +97,14 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
     setIsError(validationError);
 
     if (validationError === undefined) {
-      formatFile.append("file", values.laptop_image);
-
-      const findBrandId = data.brands.find(
-        (e) => e.name === (values.laptop_brand_id as any)
-      );
-
-      const prepObject: LeptopTypes = {
-        laptop_cpu: values.laptop_cpu,
-        laptop_cpu_cores: values.laptop_cpu_cores,
-        laptop_hard_drive_type: values.laptop_hard_drive_type,
-        laptop_name: values.laptop_name,
-        laptop_state: values.laptop_state === "ახალი" ? "new" : "used",
-        laptop_cpu_threads: values.laptop_cpu_threads,
-        laptop_price: values.laptop_price,
-        laptop_purchase_date: values.laptop_purchase_date,
-        laptop_ram: values.laptop_ram,
-        laptop_image: values.laptop_image,
-        laptop_brand_id: Number(findBrandId!.id),
-      };
-
-      setupRequest(prepObject);
+      sendLaptop();
     }
   };
 
-  // const r = new FileReader();
+  useEffect(() => {
+    setupRequest(setPrepObject());
+  }, [values]);
 
-  // console.log(values.lapt)
-  // static width in css
   return (
     <SLeptopFormWrapper>
       <SLeptopForm onSubmit={submitHandler}>
@@ -334,8 +342,9 @@ export const LeptopForm: React.FC<Props> = ({ setFormRoute, setupRequest }) => {
           >
             უკან
           </SLeptopFormBackButton>
-          <SLeptopFormSaveButton type="submit">
-            დამახსოვრება
+          <SLeptopFormSaveButton disabled={isLoading} type="submit">
+            {/* დამახსოვრება */}
+            {isLoading ? <Loading /> : "დამახსოვრება"}
           </SLeptopFormSaveButton>
         </SLeptopFormContainer>
       </SLeptopForm>

@@ -5,14 +5,13 @@ type UseFormValue = [
   LeptopTypes,
   (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void,
   (file: File) => void,
-  React.Dispatch<React.SetStateAction<LeptopTypes>>
 ];
 
 export const useLaptopForm = (initialValue: LeptopTypes): UseFormValue => {
   const [laptopForm, setLaptopForm] = useState<LeptopTypes>(initialValue);
 
   const fileUploadHandler = (file: File) => {
-    if(file.size == null) return
+    if(!file.size) return
 
     setLaptopForm(prev => ({
       ...prev,
@@ -37,5 +36,5 @@ export const useLaptopForm = (initialValue: LeptopTypes): UseFormValue => {
   };
 
 
-  return [laptopForm, laptopHandler, fileUploadHandler, setLaptopForm];
+  return [laptopForm, laptopHandler, fileUploadHandler];
 };

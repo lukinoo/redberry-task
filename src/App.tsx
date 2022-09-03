@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./view/home";
 import { EmployeeInfo } from "./view/employeeInfo";
 import { RecordLists } from "./view/RecordLists";
-import { RecordInfo } from "./view/RecordInfo";
+// import { RecordInfo } from "./view/RecordInfo";
 import { Complete } from "./view/Complete";
 
 //will be removed
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/employee-form" element={<EmployeeInfo />} />
         <Route path="/record-list" element={<RecordLists />} />
-        <Route path="/record-list/:id" element={<RecordInfo />} />
+        <Route path="/record-list/:id" element={<EachLaptop />} />
         <Route path="/complete" element={<Complete />} />
         <Route path="/test" element={<EachLaptop />} />
 

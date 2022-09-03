@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { useFetchList } from "./hooks/useFetchList";
 import {
   SRecordHeaderBackArrow,
@@ -13,6 +15,19 @@ import {
 
 export const RecordLists = () => {
   // const [data] = useFetchList();
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://pcfy.redberryinternship.ge/api/laptops?token=5f55aaeb6fb1997cca7f5197173d3737`
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <SRecordListContainer>

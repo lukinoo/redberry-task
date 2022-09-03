@@ -62,11 +62,26 @@ export const SEmployeeHeaderButtonEmloyee = styled.button`
     font-size: 1rem;
     margin: 0 0 2rem 0;
     font-weight: 700;
+    display: none;
     &.active-form {
       &::before {
         display: none;
       }
     }
+  }
+`;
+
+export const SEmployeeHeaderMobileIndicator = styled.button`
+  display: none;
+  border: none;
+  background: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  @media screen and (max-width: 768px) {
+    display: block;
   }
 `;
 
