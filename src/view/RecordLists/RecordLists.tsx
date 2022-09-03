@@ -19,7 +19,7 @@ export const RecordLists = () => {
   useEffect(() => {
     axios
       .get(
-        `https://pcfy.redberryinternship.ge/api/laptops?token=5f55aaeb6fb1997cca7f5197173d3737`
+        `https://pcfy.redberryinternship.ge/api/laptops?token=${process.env.TOKEN}`
       )
       .then((res) => {
         console.log(res);
