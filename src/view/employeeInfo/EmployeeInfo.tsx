@@ -58,6 +58,7 @@ export const EmployeeInfo = () => {
         console.log(err);
       });
   };
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [formRoute]);

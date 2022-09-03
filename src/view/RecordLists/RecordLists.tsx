@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // import { useFetchList } from "./hooks/useFetchList";
 import {
   SRecordHeaderBackArrow,
@@ -60,7 +61,7 @@ export const RecordLists = () => {
             <SRecordListItems key={id}>
               <SRecordListEachItem>
                 <img
-                  src={"https://pcfy.redberryinternship.ge" + image}
+                  src={`https://pcfy.redberryinternship.ge${image}`}
                   alt=""
                 />
                 <SRecordListEachItemInfoWrapp>
@@ -68,7 +69,7 @@ export const RecordLists = () => {
                     {name} {surname}
                   </h3>
                   <h5>{recordList.laptop.name}</h5>
-                  <p>მეტის ნახვა</p>
+                  <Link to={`${id}`}>მეტის ნახვა</Link>
                 </SRecordListEachItemInfoWrapp>
               </SRecordListEachItem>
             </SRecordListItems>

@@ -98,10 +98,6 @@ export const SEachLaptopEmployeeInfoWrapper = styled.div`
   }
 `;
 
-SEachLaptopImage.defaultProps = {
-  src: "assets/img/laptop.png",
-};
-
 export const SEachLaptopInfoWrapper = styled.div`
   grid-column: 1/3;
   display: flex;
@@ -201,7 +197,3 @@ export const SEachLaptopPriceWrapper = styled.div`
 `;
 
 export const SEachLaptopBackBtnArrow = styled.img``;
-
-SEachLaptopBackBtnArrow.defaultProps = {
-  src: "assets/svg/arrow.svg",
-};
