@@ -13,6 +13,9 @@ export const SLeptopForm = styled.form`
   border-radius: 18px;
   font-family: "Helvetica Neue";
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  @media screen and (max-width: 768px) {
+    height: 220vh;
+  }
 `;
 
 export const SLeptopFormContainer = styled.div`
@@ -23,12 +26,22 @@ export const SLeptopFormContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0 3.5rem;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+    width: 90%;
+    grid-gap: 0;
+  }
 `;
 
 export const SLeptopFormInputWrapper = styled.div<{ isError?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media screen and (max-width: 768px) {
+    grid-column: 1/3;
+    width: 100%;
+    margin: 1rem 0;
+  }
   p {
     font-size: 0.8rem;
     font-weight: 300;
@@ -68,6 +81,10 @@ export const SLeptopFormInputLabel = styled.label<{ isError?: boolean }>`
 export const SLeptopFormSelect = styled(SSelect)`
   grid-column: 2/3;
   align-self: center;
+  @media screen and (max-width: 768px) {
+    grid-column: 1/3;
+    margin: 1rem 0;
+  }
 `;
 
 export const SLeptopFormInfoWrapper = styled.div`
@@ -78,6 +95,9 @@ export const SLeptopFormInfoWrapper = styled.div`
   border-top: 1px solid #c7c7c7;
   div {
     flex: 1;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
@@ -108,6 +128,13 @@ export const SLeptopFormDateInputWrapper = styled.div`
   gap: 3.5rem;
   div {
     flex: 1;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      margin: 1rem 0;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
@@ -138,18 +165,21 @@ export const SLeptopFormUploadAgainButton = styled.button`
   border: none;
   outline: none;
   overflow: hidden;
-  input[type="file"]{
-    position:absolute;
+  input[type="file"] {
+    position: absolute;
     opacity: 0;
     cursor: pointer;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-  };
+  }
   transition: background 0.2s ease;
   &:hover {
     background: #317ad0;
+  }
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -158,6 +188,9 @@ export const SLeptopFormImageWarnWrapper = styled.div`
   align-items: center;
   p {
     margin: 0 1.5rem;
+  }
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -177,6 +210,10 @@ export const SLeptopFormSaveButton = styled.button`
   transition: background 0.2s ease;
   &:hover {
     background: #317ad0;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
   }
 `;
 

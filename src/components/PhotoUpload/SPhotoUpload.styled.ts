@@ -42,6 +42,15 @@ export const SPhotoUpload = styled.div<PhotoUploadStyleProp>`
     cursor: pointer;
     border: 1px solid red;
     height: 423px;
+    @media screen and (max-width: 768px) {
+      padding: 0;
+    }
+  }
+  .camera__ {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: block;
+    }
   }
 `;
 
@@ -53,6 +62,9 @@ export const SPhotoUploadText = styled.span<PhotoUploadStyleProp>`
   justify-content: center;
   flex-direction: column;
   line-height: 38px;
+  @media screen and (max-width: 768px) {
+    width: 60%;
+  }
   color: ${(props) => {
     if (props.isError) {
       return `#E52F2F`;
@@ -77,6 +89,9 @@ export const SPhotoUploadButton = styled.button`
   font-size: 20px;
   outline: none;
   padding: 18px 60px;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const SPhotoUploadWarn = styled.img`

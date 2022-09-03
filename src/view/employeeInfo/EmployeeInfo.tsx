@@ -8,6 +8,7 @@ import {
   SEmployeeBackArrow,
   SEmployeeHeaderButtonEmloyee,
   SEmployeeHeaderButtonLeptop,
+  SEmployeeHeaderIndicator,
 } from "./EmployeeInfo.styled";
 
 import { getBinaryFromFile } from "../../utils/getBinaryFromFile";
@@ -32,6 +33,7 @@ export const EmployeeInfo = () => {
   const addLaptop = async () => {
     axios
       .post("https://pcfy.redberryinternship.ge/api/laptop/create", {
+        // api -> X
         ...globalForm,
         laptop_image: getBinaryFromFile(globalForm.laptop_image),
       })
@@ -67,6 +69,11 @@ export const EmployeeInfo = () => {
         >
           ლეპტოპის მახასიათებლები
         </SEmployeeHeaderButtonLeptop>
+        <SEmployeeHeaderIndicator>
+          {formRoute === EmployeeInfoRouteEnum.EMPLOYEE_ROUTE
+            ? "1 / 2"
+            : "2 / 2"}
+        </SEmployeeHeaderIndicator>
       </SEmployeeHeader>
       {formRoute === EmployeeInfoRouteEnum.EMPLOYEE_ROUTE && (
         <EmployeeForm

@@ -9,10 +9,14 @@ import {
   SPhotoUploadText,
   SPhotoUploadedPhoto,
   SPhotoUploadButton,
-  SPhotoUploadWarn
+  SPhotoUploadWarn,
 } from "./SPhotoUpload.styled";
 
-export const PhotoUpload: FC<PhotoUploadProps> = ({ onUpload, isError, blobSourcePath }) => {
+export const PhotoUpload: FC<PhotoUploadProps> = ({
+  onUpload,
+  isError,
+  blobSourcePath,
+}) => {
   const { fileUploadHandler, uploadedPhoto } = useUploadHandler();
 
   const onUploadCallback = (file: File) => {
@@ -41,9 +45,10 @@ export const PhotoUpload: FC<PhotoUploadProps> = ({ onUpload, isError, blobSourc
         onDrop={(file: File) => onUploadCallback(file)}
         handleChange={(file: File) => onUploadCallback(file)}
       />
+      <img className="camera__" src="assets/svg/camera.svg" alt="" />
       <SPhotoUploadText isError={isError}>
-        { isError && <SPhotoUploadWarn /> }
         ჩააგდე ან ატვირთე ლეპტოპის ფოტო
+        {isError && <SPhotoUploadWarn />}
       </SPhotoUploadText>
       <SPhotoUploadButton>ატვირთე</SPhotoUploadButton>
     </SPhotoUpload>

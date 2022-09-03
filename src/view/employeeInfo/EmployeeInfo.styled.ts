@@ -26,6 +26,9 @@ export const SEmployeeHeaderBackBtn = styled(Link)`
   background: #d9d9d9;
   display: grid;
   place-items: center;
+  @media screen and (max-width: 768px) {
+    background: #ffffff;
+  }
 `;
 
 const buttonStyles = css`
@@ -55,10 +58,36 @@ const buttonStyles = css`
 export const SEmployeeHeaderButtonEmloyee = styled.button`
   ${buttonStyles}
   margin-right: 5rem;
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    margin: 0 0 2rem 0;
+    font-weight: 700;
+    &.active-form {
+      &::before {
+        display: none;
+      }
+    }
+  }
+`;
+
+export const SEmployeeHeaderIndicator = styled.span`
+  display: none;
+  color: #898989;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
+  font-weight: 400;
+  font-family: inherit;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 `;
 
 export const SEmployeeHeaderButtonLeptop = styled.button`
   ${buttonStyles}
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const SEmployeeBackArrow = styled.img``;

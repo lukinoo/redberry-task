@@ -54,9 +54,6 @@ export const SRecordListWrapper = styled.div`
 `;
 
 export const SRecordListItems = styled.div`
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
 `;
 
 export const SRecordListEachItem = styled.div`
