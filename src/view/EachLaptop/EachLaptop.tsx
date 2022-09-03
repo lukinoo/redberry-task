@@ -15,32 +15,6 @@ import {
 } from "./EachLaptop.styled";
 import { EachLaptopType } from "./EachLaptop.types";
 
-/*
-      "user": {
-      "name": "გელა",
-      "surname": "გელაშვილი",
-      "team_id": 1,
-      "position_id": 1,
-      "email": "gela.gelashvili@redberry.ge",
-      "phone_number": 995555555555
-    },
-    "laptop": {
-      "name": "HP",
-      "image": "/storage/images/uLuuQCcXG9MhotvvMbezzXvPrEJFc5m74JfUlWdp.jpg",
-      "brand_id": 1,
-      "cpu": {
-        "name": "Intel Core i3",
-        "cores": 64,
-        "threads": 128
-      },
-      "ram": 34,
-      "hard_drive_type": "HDD",
-      "state": "new",
-      "purchase_date": "10-10-2003",
-      "price": 1600
-    }
-*/
-
 export const EachLaptop = () => {
   const [eachLaptop, setEachLaptop] = useState<EachLaptopType>();
 
@@ -53,7 +27,6 @@ export const EachLaptop = () => {
       )
       .then((res) => {
         setEachLaptop(res.data.data);
-        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
