@@ -13,7 +13,9 @@ export const Complete = () => {
       <SCompletePopUp>
         <SCompleteImage />
         <SCompleteTitle>ჩანაწერი დამატებულია!</SCompleteTitle>
-        <SCompleteListButton to="/laptops">სიაში გადაყვანა</SCompleteListButton>
+        <SCompleteListButton to="/record-list">
+          სიაში გადაყვანა
+        </SCompleteListButton>
         <SCompleteBackButton to="/">მთავარი</SCompleteBackButton>
       </SCompletePopUp>
     </SCompleteContainer>
