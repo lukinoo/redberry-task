@@ -1,9 +1,9 @@
-<center>
+<div align="center">
 <img src="https://i.ibb.co/p0x9SWq/image-removebg-preview-1.png" width="300">
 </center>
-<center>
-	<h3>Redberry Internship Task</h3>
-<center/>
+<div align="center">
+    <h3>Redberry Internship Task</h3>
+</div>
 
 ### Used Technologies
 
