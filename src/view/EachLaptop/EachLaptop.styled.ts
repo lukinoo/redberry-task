@@ -91,8 +91,14 @@ export const SEachLaptopEmployeeInfoWrapper = styled.div`
       font-size: 1.3rem;
       font-weight: 400;
       margin: 2rem 0;
+      overflow: hidden;
+      width: 250px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
       @media screen and (max-width: 768px) {
         font-size: 0.8rem;
+        width: 120px;
       }
     }
   }
