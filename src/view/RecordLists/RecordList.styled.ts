@@ -91,6 +91,11 @@ export const SRecordListEachItemInfoWrapper = styled.div`
     font-size: 1.1rem;
     font-weight: 600;
     color: #2e2e2e;
+    overflow: hidden;
+    width: 200px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
   h5 {
     margin: 2rem 0;
