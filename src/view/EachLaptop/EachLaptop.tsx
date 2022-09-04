@@ -15,7 +15,7 @@ import {
 } from "./EachLaptop.styled";
 import { EachLaptopType } from "./EachLaptop.types";
 import { useFetch } from "./hooks/useFetch";
-import {spaceSeperator} from '../../utils/spaceSeperator'
+import { spaceSeperator } from "../../utils/spaceSeperator";
 
 export const EachLaptop = () => {
   const [eachLaptop, setEachLaptop] = useState<EachLaptopType>();
@@ -54,8 +54,6 @@ export const EachLaptop = () => {
 
     const currentBrandsId = eachLaptop?.laptop.brand_id;
     const brandsName = brands.find((el) => el.id === currentBrandsId);
-
-    console.log(brandsName);
 
     return {
       team: teamName?.name,
@@ -139,7 +137,7 @@ export const EachLaptop = () => {
           </div>
           <div style={{ flex: 1 }}>
             <h3>
-              შეძენის რიცხვი: <span>{eachLaptop?.laptop.purchase_date}</span>
+              შეძენის რიცხვaი: <span>{eachLaptop?.laptop.purchase_date}</span>
             </h3>
           </div>
         </SEachLaptopPriceWrapper>
