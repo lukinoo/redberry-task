@@ -52,7 +52,6 @@ export const EmployeeForm: FC<EmployeeFormProps> = ({
     return filterPostions;
   }, [values.team, positions, teams]);
 
-
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
 

@@ -7,11 +7,12 @@ import {
   SRecordHeaderBackBtn,
   SRecordHeaderTitle,
   SRecordListContainer,
-  SRecordListEachItem,
-  SRecordListEachItemInfoWrapp,
+  SRecordListImageWrapper,
+  SRecordListEachItemInfoWrapper,
   SRecordListHeader,
   SRecordListItems,
   SRecordListWrapper,
+  SRecordListEachItem,
 } from "./RecordList.styled";
 
 interface RecordListTypes {
@@ -60,17 +61,19 @@ export const RecordLists = () => {
           return (
             <SRecordListItems key={id}>
               <SRecordListEachItem>
-                <img
-                  src={`https://pcfy.redberryinternship.ge${image}`}
-                  alt=""
-                />
-                <SRecordListEachItemInfoWrapp>
+                <SRecordListImageWrapper>
+                  <img
+                    src={`https://pcfy.redberryinternship.ge${image}`}
+                    alt=""
+                  />
+                </SRecordListImageWrapper>
+                <SRecordListEachItemInfoWrapper>
                   <h3>
                     {name} {surname}
                   </h3>
                   <h5>{recordList.laptop.name}</h5>
                   <Link to={`${id}`}>მეტის ნახვა</Link>
-                </SRecordListEachItemInfoWrapp>
+                </SRecordListEachItemInfoWrapper>
               </SRecordListEachItem>
             </SRecordListItems>
           );

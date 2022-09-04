@@ -15,6 +15,8 @@ export const SRecordListHeader = styled.header`
 `;
 
 export const SRecordHeaderBackBtn = styled(Link)`
+  display: grid;
+  place-items: center;
   position: absolute;
   top: 40%;
   left: 3%;
@@ -24,8 +26,6 @@ export const SRecordHeaderBackBtn = styled(Link)`
   height: 50px;
   border-radius: 50%;
   background: #d9d9d9;
-  display: grid;
-  place-items: center;
   @media screen and (max-width: 768px) {
     background: transparent;
   }
@@ -42,14 +42,17 @@ export const SRecordHeaderTitle = styled.h2`
 
 export const SRecordListWrapper = styled.div`
   min-height: 100vh;
-  width: 70%;
+  max-width: 1170px;
+  width: 100%;
   margin: 5rem auto 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
+  place-items: center;
   justify-content: center;
   @media screen and (max-width: 768px) {
     width: 100%;
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -57,27 +60,32 @@ export const SRecordListItems = styled.div``;
 
 export const SRecordListEachItem = styled.div`
   width: 100%;
-  height: 100%;
+  height: 200px;
   display: flex;
   align-items: center;
   padding: 1rem;
   background: #eafaff;
   border: 1px solid #aed1ea;
+  overflow: hidden;
   border-radius: 1.2rem;
   @media screen and (max-width: 768px) {
     border-radius: 10px;
-  }
-  img {
-    max-width: 200px;
     width: 100%;
-    @media screen and (max-width: 768px) {
-      max-width: 150px;
-      width: 100%;
-    }
   }
 `;
 
-export const SRecordListEachItemInfoWrapp = styled.div`
+export const SRecordListImageWrapper = styled.div`
+  max-width: 200px;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 10px;
+  img {
+    width: 100%;
+  }
+`;
+
+export const SRecordListEachItemInfoWrapper = styled.div`
   padding-left: 1.5rem;
   h3 {
     font-size: 1.1rem;

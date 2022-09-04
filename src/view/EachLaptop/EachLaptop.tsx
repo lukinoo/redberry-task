@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import {
   SEachLaptopBackBtn,
@@ -14,11 +14,19 @@ import {
   SEachLaptopWrapper,
 } from "./EachLaptop.styled";
 import { EachLaptopType } from "./EachLaptop.types";
+import { useFetch } from "./hooks/useFetch";
+import {spaceSeperator} from '../../utils/spaceSeperator'
 
 export const EachLaptop = () => {
   const [eachLaptop, setEachLaptop] = useState<EachLaptopType>();
 
   const { id } = useParams();
+
+  const [teams] = useFetch(`https://pcfy.redberryinternship.ge/api/teams`);
+  const [brands] = useFetch(`https://pcfy.redberryinternship.ge/api/brands`);
+  const [positions] = useFetch(
+    `https://pcfy.redberryinternship.ge/api/positions`
+  );
 
   const fetchEachLaptop = () => {
     axios
@@ -37,7 +45,24 @@ export const EachLaptop = () => {
     fetchEachLaptop();
   }, [id]);
 
-  // `https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${process.env.REACT_APP_TOKEN}`
+  const currentTeam = useMemo(() => {
+    const currentTeamId = eachLaptop?.user.team_id;
+    const teamName = teams.find((el) => el.id === currentTeamId);
+
+    const currentPositionId = eachLaptop?.user.position_id;
+    const positionName = positions.find((el) => el.id === currentPositionId);
+
+    const currentBrandsId = eachLaptop?.laptop.brand_id;
+    const brandsName = brands.find((el) => el.id === currentBrandsId);
+
+    console.log(brandsName);
+
+    return {
+      team: teamName?.name,
+      position: positionName?.name,
+      brand: brandsName?.name,
+    };
+  }, [eachLaptop?.user.team_id, teams, positions, brands]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -47,7 +72,7 @@ export const EachLaptop = () => {
     <SEachLaptopContainer>
       <SEachLaptopHeader>
         <SEachLaptopBackBtn to="/">
-          <SEachLaptopBackBtnArrow src="assets/svg/arrow.svg" />
+          <SEachLaptopBackBtnArrow src="/assets/svg/arrow.svg" />
         </SEachLaptopBackBtn>
         <SEachLaptopTitle>ᲚᲔᲞᲢᲝᲞᲘᲡ ᲘᲜᲤᲝ</SEachLaptopTitle>
       </SEachLaptopHeader>
@@ -67,8 +92,8 @@ export const EachLaptop = () => {
             <p>
               {eachLaptop?.user.name} {eachLaptop?.user.surname}
             </p>
-            <p>დეველოპერი</p>
-            <p>ილუსტრატორი</p>
+            <p>{currentTeam.team}</p>
+            <p>{currentTeam.position}</p>
             <p>{eachLaptop?.user.email}</p>
             <p>{eachLaptop?.user.phone_number}</p>
           </div>
@@ -83,7 +108,7 @@ export const EachLaptop = () => {
             </div>
             <div>
               <p>{eachLaptop?.laptop.name}</p>
-              <p>HP</p>
+              <p>{currentTeam.brand}</p>
               <p>{eachLaptop?.laptop.ram}</p>
               <p>{eachLaptop?.laptop.hard_drive_type}</p>
             </div>
@@ -108,8 +133,8 @@ export const EachLaptop = () => {
               <h3>ლეპტოპის ფასი:</h3>
             </div>
             <div style={{ marginLeft: "2rem" }}>
-              <p>{eachLaptop?.laptop.state}</p>
-              <p>{eachLaptop?.laptop.price}ლ</p>
+              <p>{eachLaptop?.laptop.state === "new" ? "ახალი" : "მეორადი"}</p>
+              <p>{spaceSeperator(eachLaptop?.laptop.price)}₾</p>
             </div>
           </div>
           <div style={{ flex: 1 }}>
